@@ -1,0 +1,24 @@
+Pasos para Crear nuevo plantilla con primeng y tailwind
+
+# 1. Crear el proyecto en Angular 18 (usando SCSS)
+ng new mi-sistema-admin --style=scss --routing=true
+
+# 2. Entrar a la carpeta
+cd mi-sistema-admin
+
+# 3. Instalar PrimeNG, PrimeIcons y Tailwind
+
+#Especificar que version de primeng y angular usar para evitar errores oactualizar angular  a la version soportada por primeng
+npm install primeng primeicons
+npm install primeng@20 primeicons @angular/cdk@20
+
+# instaalr v3 de tailwind   usar @3 si es que manda error el que no tiene version
+npm install -D tailwindcss@3 postcss autoprefixer
+npm install -D tailwindcss postcss autoprefixer
+
+# 4. Inicializar los archivos de configuración de Tailwind
+npx tailwindcss init
+
+# 5. Crear archivos de entorno 
+ng g environments
+

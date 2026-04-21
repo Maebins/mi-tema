@@ -1,0 +1,60 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  darkMode: 'class',
+  content: [
+    "./src/**/*.{html,ts}", 
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        sans: ['Inter', 'sans-serif'],
+      },
+      colors: {
+        primary: {
+          50: 'var(--p-primary-50)',
+          100: 'var(--p-primary-100)',
+          200: 'var(--p-primary-200)',
+          300: 'var(--p-primary-300)',
+          400: 'var(--p-primary-400)',
+          500: 'var(--p-primary-500)',
+          600: 'var(--p-primary-600)',
+          700: 'var(--p-primary-700)',
+          800: 'var(--p-primary-800)',
+          900: 'var(--p-primary-900)',
+          950: 'var(--p-primary-950)',
+          DEFAULT: 'var(--p-primary-500)'
+        },
+        secondary: {
+          50: 'var(--p-secondary-50)',
+          100: 'var(--p-secondary-100)',
+          200: 'var(--p-secondary-200)',
+          300: 'var(--p-secondary-300)',
+          400: 'var(--p-secondary-400)',
+          500: 'var(--p-secondary-500)',
+          600: 'var(--p-secondary-600)',
+          700: 'var(--p-secondary-700)',
+          800: 'var(--p-secondary-800)',
+          900: 'var(--p-secondary-900)',
+          950: 'var(--p-secondary-950)',
+          DEFAULT: 'var(--p-secondary-500)'
+        },
+        danger: {
+          50: '#fef2f2',
+          100: '#fee2e2',
+          200: '#fecaca',
+          300: '#fca5a5',
+          400: '#f87171',
+          500: '#ef4444', // Rojo estándar para el error
+          600: '#dc2626',
+          700: '#b91c1c',
+          800: '#991b1b',
+          900: '#7f1d1d',
+          950: '#450a0a',
+          DEFAULT: '#ef4444'
+        }
+      }
+    },
+  },
+  plugins: [],
+}
+
