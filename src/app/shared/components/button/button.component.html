@@ -1,0 +1,13 @@
+<p-button
+    [label]="label"
+    [icon]="icon"
+    [severity]="severity"
+    [outlined]="outlined"
+    [text]="text"
+    [raised]="raised"
+    [rounded]="rounded"
+    [disabled]="disabled"
+    [type]="type"
+    [styleClass]="fullWidth ? 'w-full ' + styleClass : styleClass"
+    (onClick)="onClick.emit($event)">
+</p-button>

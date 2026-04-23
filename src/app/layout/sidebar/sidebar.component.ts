@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { AppMenuItem } from '../../core/menu/menu.models';
 
 @Component({
-  selector: 'app-sidebar',
-  imports: [CommonModule, SidebarItemComponent],
-  templateUrl: './sidebar.component.html',
-  styleUrl: './sidebar.component.scss',
+    selector: 'app-sidebar',
+    imports: [CommonModule, SidebarItemComponent],
+    templateUrl: './sidebar.component.html',
+    styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
-  public layoutService = inject(LayoutService);
-  menuItems: AppMenuItem[] = this.layoutService.getMenu();
+    public layoutService = inject(LayoutService);
+    menuItems: AppMenuItem[] = this.layoutService.getMenu();
 }

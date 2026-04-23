@@ -6,11 +6,11 @@ import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-layout',
-  imports: [CommonModule, RouterModule, HeaderComponent, SidebarComponent],
-  templateUrl: './layout.component.html',
-  styleUrl: './layout.component.scss',
+    selector: 'app-layout',
+    imports: [CommonModule, RouterModule, HeaderComponent, SidebarComponent],
+    templateUrl: './layout.component.html',
+    styleUrl: './layout.component.scss',
 })
 export class LayoutComponent {
-  layoutService = inject(LayoutService);
+    layoutService = inject(LayoutService);
 }

@@ -1,48 +1,155 @@
+<div class="relative w-full min-h-full">
+    <app-overlay-loader [active]="isDashboardLoading" text="Cargando panel..."></app-overlay-loader>
 
-<form [formGroup]="userForm" (ngSubmit)="guardar()" class="p-6 max-w-xl  bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 mt-8">
-    
+<form
+    [formGroup]="userForm"
+    (ngSubmit)="guardar()"
+    class="relative overflow-hidden p-6 max-w-xl bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 mt-8"
+>
+    <!-- Overlay Loader cubriendo el formulario -->
+    <app-overlay-loader [active]="isSaving" text="Guardando datos..."></app-overlay-loader>
+
     <h2 class="text-xl font-bold mb-6 text-secondary-900 dark:text-white">Formulario de Prueba</h2>
 
     <div class="flex flex-col gap-4">
-        
-        <app-form-field label="Nombre Completo" [required]="true" [control]="userForm.get('nombre')">
+        <app-form-field
+            label="Nombre Completo"
+            [required]="true"
+            [control]="userForm.get('nombre')"
+        >
             <input pInputText type="text" formControlName="nombre" placeholder="Ej: Juan Pérez" />
         </app-form-field>
 
-        <app-form-field label="Correo Electrónico" [required]="true" [control]="userForm.get('email')">
-            <input pInputText type="email" formControlName="email" placeholder="correo@ejemplo.com" />
+        <app-form-field
+            label="Correo Electrónico"
+            [required]="true"
+            [control]="userForm.get('email')"
+        >
+            <input
+                pInputText
+                type="email"
+                formControlName="email"
+                placeholder="correo@ejemplo.com"
+            />
         </app-form-field>
 
         <app-form-field label="Teléfono Celular" [control]="userForm.get('telefono')">
             <input pInputText type="tel" formControlName="telefono" placeholder="+51 999 999 999" />
         </app-form-field>
 
+        <app-form-field
+            label="Fecha de Nacimiento"
+            [required]="true"
+            [control]="userForm.get('fechaNacimiento')"
+        >
+            <app-datepicker
+                formControlName="fechaNacimiento"
+                placeholder="Selecciona tu fecha de nacimiento"
+            ></app-datepicker>
+        </app-form-field>
+
+        <app-form-field
+            label="Rango de Fechas (Vacaciones)"
+            [control]="userForm.get('rangoFechas')"
+        >
+            <app-datepicker
+                formControlName="rangoFechas"
+                selectionMode="range"
+                placeholder="Selecciona inicio y fin"
+            ></app-datepicker>
+        </app-form-field>
+
+        <app-form-field
+            label="Fechas Múltiples (Días de disponibilidad)"
+            [control]="userForm.get('fechasMultiples')"
+        >
+            <app-datepicker
+                formControlName="fechasMultiples"
+                selectionMode="multiple"
+                placeholder="Selecciona varios días"
+            ></app-datepicker>
+        </app-form-field>
     </div>
 
     <div class="mt-6 flex justify-end">
-        <p-button label="Guardar Datos" type="submit" [disabled]="userForm.invalid"></p-button>
+        <app-button label="Guardar Datos" type="submit" [disabled]="userForm.invalid"></app-button>
     </div>
-
 </form>
 
 <div class="grid grid-cols-1 gap-4 my-4">
     <app-search-field (search)="buscarUsuario($event)"></app-search-field>
 
-<app-search-field [showIcon]="false" [showButton]="true" buttonText="Ir"></app-search-field>
+    <app-search-field [showIcon]="false" [showButton]="true" buttonText="Ir"></app-search-field>
 
-<app-search-field [showButton]="true" placeholder="Escribe el código de producto..."></app-search-field>
+    <app-search-field
+        [showButton]="true"
+        placeholder="Escribe el código de producto..."
+    ></app-search-field>
 </div>
 
-<div class="my-8">
+<div class="p-6 bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 my-8">
+    <h2 class="text-xl font-bold mb-6 text-secondary-900 dark:text-white">Variaciones del Componente Button</h2>
+    
+    <div class="flex flex-col gap-6">
+        <div class="flex flex-wrap gap-4">
+            <app-button label="Primary"></app-button>
+            <app-button label="Secondary" severity="secondary"></app-button>
+            <app-button label="Success" severity="success"></app-button>
+            <app-button label="Info" severity="info"></app-button>
+            <app-button label="Warning" severity="warn"></app-button>
+            <app-button label="Help" severity="help"></app-button>
+            <app-button label="Danger" severity="danger"></app-button>
+            <app-button label="Contrast" severity="contrast"></app-button>
+        </div>
+        
+        <div class="flex flex-wrap items-center gap-4">
+            <app-button label="Outlined" [outlined]="true"></app-button>
+            <app-button label="Rounded" [rounded]="true" severity="success"></app-button>
+            <app-button label="Text" [text]="true" severity="info"></app-button>
+            <app-button label="Raised" [raised]="true" severity="warn"></app-button>
+            <app-button icon="pi pi-check" [rounded]="true"></app-button>
+            <app-button label="Con Icono" icon="pi pi-star" severity="secondary"></app-button>
+            <app-button label="Disabled" [disabled]="true"></app-button>
+        </div>
+    </div>
+</div>
 
-<app-table 
-    title="Catálogo de Productos"
-    [data]="misDatos"
-    [columns]="misColumnas"
-    [globalFilterFields]="['nombre', 'codigo']"
-    [showSelection]="true"
-    (onEdit)="editar($event)"
-    (onDelete)="eliminar($event)"
-    (onSelectionChange)="seleccionMultiple($event)">
-</app-table>
+<div class="p-6 bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 my-8">
+    <h2 class="text-xl font-bold mb-6 text-secondary-900 dark:text-white">Prueba de Modal Universal</h2>
+    <app-button label="Abrir Modal de Detalles" icon="pi pi-external-link" (onClick)="abrirModal()"></app-button>
+</div>
+
+<!-- Definición de nuestro Modal -->
+<app-modal
+    [(visible)]="isModalVisible"
+    header="Detalles de Operación"
+    width="450px"
+>
+    <p class="text-secondary-700 dark:text-secondary-300 leading-relaxed mb-4">
+        Este es el contenido de tu nuevo modal universal. Puedes poner <strong>formularios</strong>, textos de advertencia, o cualquier HTML que necesites aquí adentro.
+    </p>
+    <div modal-footer class="flex justify-end gap-3 w-full">
+        <app-button label="Cancelar" severity="secondary" [outlined]="true" (onClick)="cerrarModal()"></app-button>
+        <app-button label="Confirmar" severity="primary" (onClick)="cerrarModal()"></app-button>
+    </div>
+</app-modal>
+
+<div class="my-8">
+    @if (isTableLoading) {
+        <app-skeleton-table [columns]="5" [rows]="4"></app-skeleton-table>
+    } @else {
+        <app-table
+            title="Catálogo de Productos"
+            [data]="misDatos"
+            [columns]="misColumnas"
+            [globalFilterFields]="['nombre', 'codigo']"
+            [showSelection]="true"
+            (onEdit)="editar($event)"
+            (onDelete)="eliminar($event)"
+            (onSelectionChange)="seleccionMultiple($event)"
+        >
+        </app-table>
+    }
+</div>
+
 </div>

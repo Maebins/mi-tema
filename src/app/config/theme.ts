@@ -1,4 +1,4 @@
-import { definePreset } from '@primeng/themes' ;
+import { definePreset } from '@primeng/themes';
 import Aura from '@primeng/themes/aura';
 
 export const MySystemPreset = definePreset(Aura, {
@@ -9,12 +9,12 @@ export const MySystemPreset = definePreset(Aura, {
             200: '#bfdbfe',
             300: '#93c5fd',
             400: '#60a5fa',
-            500: '#3b82f6', 
+            500: '#3b82f6',
             600: '#2563eb',
             700: '#1d4ed8',
             800: '#1e40af',
             900: '#1e3a8a',
-            950: '#172554'
+            950: '#172554',
         },
         secondary: {
             50: '#f8fafc',
@@ -27,7 +27,7 @@ export const MySystemPreset = definePreset(Aura, {
             700: '#334155',
             800: '#1e293b',
             900: '#0f172a',
-            950: '#020617'
+            950: '#020617',
         },
         // Colores de apoyo (sobrescribir aquí)
         colorScheme: {
@@ -37,7 +37,7 @@ export const MySystemPreset = definePreset(Aura, {
                     50: '{secondary.50}',
                     100: '{secondary.100}',
                     // ... esto mapea los colores de fondo al modo claro
-                }
+                },
             },
             dark: {
                 surface: {
@@ -45,8 +45,8 @@ export const MySystemPreset = definePreset(Aura, {
                     50: '{secondary.950}',
                     100: '{secondary.900}',
                     // ... esto mapea los colores de fondo al modo oscuro
-                }
-            }
-        }
-    } as any
+                },
+            },
+        },
+    } as any,
 });

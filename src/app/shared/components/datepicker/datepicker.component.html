@@ -1,0 +1,15 @@
+<p-datepicker
+    [(ngModel)]="value"
+    (ngModelChange)="onDateChange($event)"
+    (onBlur)="onBlur()"
+    [placeholder]="placeholder"
+    [dateFormat]="dateFormat"
+    [showIcon]="showIcon"
+    [selectionMode]="selectionMode"
+    [disabled]="disabled"
+    [minDate]="minDate"
+    [maxDate]="maxDate"
+    styleClass="w-full"
+    class="w-full flex"
+    [fluid]="true"
+></p-datepicker>

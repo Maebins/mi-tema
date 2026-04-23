@@ -1,0 +1,16 @@
+<p-dialog
+    [header]="header"
+    [visible]="visible"
+    (visibleChange)="visibleChange.emit($event)"
+    [modal]="modal"
+    [style]="{ width: width }"
+    [closable]="closable"
+    [styleClass]="styleClass"
+    [draggable]="false"
+    [resizable]="false"
+>
+    <ng-content></ng-content>
+    <ng-template pTemplate="footer">
+        <ng-content select="[modal-footer]"></ng-content>
+    </ng-template>
+</p-dialog>

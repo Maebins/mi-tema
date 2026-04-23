@@ -8,11 +8,14 @@ export const routes: Routes = [
         // Aquí iría tu AuthGuard más adelante
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-            { 
-                path: 'dashboard', 
-                loadComponent: () => import('../app/modules/dashboard/dashboard.component').then(m => m.DashboardComponent)
+            {
+                path: 'dashboard',
+                loadComponent: () =>
+                    import('../app/modules/dashboard/dashboard.component').then(
+                        (m) => m.DashboardComponent,
+                    ),
             },
             // Agrega más rutas de features aquí...
-        ]
+        ],
     },
 ];

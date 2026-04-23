@@ -1,5 +1,5 @@
 /* PrimeIcons */
-@import "primeicons/primeicons.css";
+@import 'primeicons/primeicons.css';
 
 /* Tailwind CSS */
 @tailwind base;
@@ -9,42 +9,46 @@
 @layer tailwind-base, primeng, tailwind-utilities;
 
 @layer tailwind-base {
-  @tailwind base;
+    @tailwind base;
 }
 
 @layer tailwind-utilities {
-  @tailwind components;
-  @tailwind utilities;
+    @tailwind components;
+    @tailwind utilities;
 }
 
 /* Body */
 @layer base {
-  body {
-    @apply m-0 p-0 antialiased text-slate-800 bg-slate-50;
-    @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
-    font-family: 'Inter', sans-serif;
-  }
+    body {
+        @apply m-0 p-0 antialiased text-slate-800 bg-slate-50;
+        @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
+        font-family: 'Inter', sans-serif;
+    }
 }
 
 /* Ajuste Google Icons */
 .material-symbols-rounded {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24;
 }
 
 .scrollbar-thin {
     scrollbar-width: thin;
-    
+
     &::-webkit-scrollbar {
         width: 6px;
     }
-    
+
     &::-webkit-scrollbar-track {
         background: transparent;
     }
-    
+
     &::-webkit-scrollbar-thumb {
         @apply bg-secondary-200 dark:bg-secondary-700 rounded-full;
-        
+
         &:hover {
             @apply bg-secondary-300 dark:bg-secondary-600;
         }
@@ -56,16 +60,20 @@
    ========================================================================== */
 
 /* 1. Reset para que los inputs ocupen el 100% de su contenedor */
-.p-inputtext, .p-dropdown, .p-calendar, .p-password input {
+.p-inputtext,
+.p-dropdown,
+.p-calendar,
+.p-password input {
     @apply w-full;
 }
 
 /* 2. ESTADOS DE ERROR AUTOMÁTICOS */
 /* Angular le agrega las clases .ng-invalid y .ng-touched a los inputs que fallan */
 .ng-invalid.ng-touched {
-    
     /* Input Normal, Password, Textarea */
-    &.p-inputtext, .p-inputtext, .p-password input {
+    &.p-inputtext,
+    .p-inputtext,
+    .p-password input {
         @apply border-danger-500 hover:border-danger-400 focus:border-danger-500 focus:ring-1 focus:ring-danger-500 #{!important};
     }
 
@@ -76,6 +84,7 @@
 }
 
 /* 3. Transiciones suaves para todos los bordes */
-.p-inputtext, .p-dropdown {
+.p-inputtext,
+.p-dropdown {
     @apply transition-colors duration-200;
 }

@@ -5,12 +5,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-sidebar-item',
-  imports: [CommonModule, RouterModule],
-  templateUrl: './sidebar-item.component.html',
-  styleUrl: './sidebar-item.component.scss',
+    selector: 'app-sidebar-item',
+    imports: [CommonModule, RouterModule],
+    templateUrl: './sidebar-item.component.html',
+    styleUrl: './sidebar-item.component.scss',
 })
 export class SidebarItemComponent {
-  @Input() item!: AppMenuItem;
-  layoutService = inject(LayoutService);
+    @Input() item!: AppMenuItem;
+    layoutService = inject(LayoutService);
 }

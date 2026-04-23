@@ -1,37 +1,49 @@
-<div *ngIf="layoutService.isMobileOpen()" 
-     class="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300"
-     (click)="layoutService.closeMobileSidebar()">
-</div>
+<div
+    *ngIf="layoutService.isMobileOpen()"
+    class="fixed inset-0 bg-black/50 z-40 md:hidden transition-opacity duration-300"
+    (click)="layoutService.closeMobileSidebar()"
+></div>
 
-<aside class="fixed top-0 left-0 h-screen bg-white dark:bg-secondary-900 border-r border-secondary-200 dark:border-secondary-700 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
-       [ngClass]="{
-        
-         '-translate-x-full': !layoutService.isMobileOpen(),
-         'translate-x-0 w-[280px]': layoutService.isMobileOpen(),
-         
-         
-         'md:translate-x-0': true, 
-         'md:w-[280px]': !layoutService.isMiniMode(),
-         'md:w-[72px]': layoutService.isMiniMode(),
-         
-         
-         'md:hover:w-[280px] md:hover:shadow-xl dark:md:hover:shadow-black/50': layoutService.isMiniMode()
-       }">
-       
-  <div class="h-16 flex items-center justify-between px-4 border-b border-secondary-200 dark:border-secondary-700 flex-shrink-0">
-    <div class="flex items-center overflow-hidden">
-        <span class="material-symbols-rounded text-3xl text-primary-500 mr-2 min-w-[32px]">cruelty_free</span>
-        <span class="text-xl font-bold text-secondary-900 dark:text-white transition-opacity duration-200 whitespace-nowrap"
-              [ngClass]="{'md:opacity-0': layoutService.isMiniMode(), 'group-hover:opacity-100': layoutService.isMiniMode()}">
-            MY THEME
-        </span>
+<aside
+    class="fixed top-0 left-0 h-screen bg-white dark:bg-secondary-900 border-r border-secondary-200 dark:border-secondary-700 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
+    [ngClass]="{
+        '-translate-x-full': !layoutService.isMobileOpen(),
+        'translate-x-0 w-[280px]': layoutService.isMobileOpen(),
+
+        'md:translate-x-0': true,
+        'md:w-[280px]': !layoutService.isMiniMode(),
+        'md:w-[72px]': layoutService.isMiniMode(),
+
+        'md:hover:w-[280px] md:hover:shadow-xl dark:md:hover:shadow-black/50':
+            layoutService.isMiniMode(),
+    }"
+>
+    <div
+        class="h-16 flex items-center justify-between px-4 border-b border-secondary-200 dark:border-secondary-700 flex-shrink-0"
+    >
+        <div class="flex items-center overflow-hidden">
+            <span class="material-symbols-rounded text-3xl text-primary-500 mr-2 min-w-[32px]"
+                >cruelty_free</span
+            >
+            <span
+                class="text-xl font-bold text-secondary-900 dark:text-white transition-opacity duration-200 whitespace-nowrap"
+                [ngClass]="{
+                    'md:opacity-0': layoutService.isMiniMode(),
+                    'group-hover:opacity-100': layoutService.isMiniMode(),
+                }"
+            >
+                MY THEME
+            </span>
+        </div>
+        <button
+            (click)="layoutService.closeMobileSidebar()"
+            class="md:hidden w-8 h-8 flex items-center justify-center rounded-full text-secondary-500"
+        >
+            <span class="material-symbols-rounded">close</span>
+        </button>
     </div>
-    <button (click)="layoutService.closeMobileSidebar()" class="md:hidden w-8 h-8 flex items-center justify-center rounded-full text-secondary-500">
-        <span class="material-symbols-rounded">close</span>
-    </button>
-  </div>
 
-  <div class="flex-1 overflow-y-auto overflow-x-hidden pt-4 space-y-1 scrollbar-thin">
-    <app-sidebar-item *ngFor="let item of menuItems" [item]="item"></app-sidebar-item>
-  </div>
+    <div class="flex-1 overflow-y-auto overflow-x-hidden pt-4 space-y-1 scrollbar-thin">
+        <app-sidebar-item *ngFor="let item of menuItems" [item]="item"></app-sidebar-item>
+    </div>
 </aside>

@@ -4,20 +4,20 @@ import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../core/theme/theme.service';
 
 @Component({
-  selector: 'app-header',
-  imports: [CommonModule],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+    selector: 'app-header',
+    imports: [CommonModule],
+    templateUrl: './header.component.html',
+    styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
-  public layoutService = inject(LayoutService);
-  themeService = inject(ThemeService);
+    public layoutService = inject(LayoutService);
+    themeService = inject(ThemeService);
 
-  toggleSidebar() {
-    if (window.innerWidth < 768) {
-      this.layoutService.toggleMobileSidebar();
-    } else {
-      this.layoutService.toggleDesktopSidebar();
+    toggleSidebar() {
+        if (window.innerWidth < 768) {
+            this.layoutService.toggleMobileSidebar();
+        } else {
+            this.layoutService.toggleDesktopSidebar();
+        }
     }
-  }
 }

@@ -1,19 +1,27 @@
-<div [ngClass]="{
-'flex flex-col space-y-1.5': orientation === 'vertical',
-'flex flex-row items-center space-x-4': orientation === 'horizontal'
-}" class="w-full relative pb-5"> <label *ngIf="label" 
+<div
+    [ngClass]="{
+        'flex flex-col space-y-1.5': orientation === 'vertical',
+        'flex flex-row items-center space-x-4': orientation === 'horizontal',
+    }"
+    class="w-full relative pb-5"
+>
+    <label
+        *ngIf="label"
         class="text-sm font-semibold text-secondary-700 dark:text-secondary-300 transition-colors"
-        [ngClass]="{'w-1/3 text-right': orientation === 'horizontal'}">
-{{ label }} 
-<span *ngIf="required" class="text-danger-500 ml-0.5">*</span>
-</label>
+        [ngClass]="{ 'w-1/3 text-right': orientation === 'horizontal' }"
+    >
+        {{ label }}
+        <span *ngIf="required" class="text-danger-500 ml-0.5">*</span>
+    </label>
 
-<div class="flex-1 w-full relative">
-<ng-content></ng-content>
+    <div class="flex-1 w-full relative">
+        <ng-content></ng-content>
 
-<small *ngIf="isInvalid" 
-        class="text-danger-500 dark:text-danger-400 text-xs font-medium absolute -bottom-5 left-1 animate-fade-in">
-    {{ errorMessage }}
-</small>
-</div>
+        <small
+            *ngIf="isInvalid"
+            class="text-danger-500 dark:text-danger-400 text-xs font-medium absolute -bottom-5 left-1 animate-fade-in"
+        >
+            {{ errorMessage }}
+        </small>
+    </div>
 </div>

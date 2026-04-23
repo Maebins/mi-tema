@@ -1,26 +1,30 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import {
+    ApplicationConfig,
+    provideBrowserGlobalErrorListeners,
+    provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { providePrimeNG } from 'primeng/config';
 import { MySystemPreset } from './config/theme';
 export const appConfig: ApplicationConfig = {
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-    provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes),
-    provideAnimations(),
-    providePrimeNG({
-        theme: {
-            preset: MySystemPreset, 
-            options: {
-                darkModeSelector: '.dark',
-                cssLayer: {
-                    name: 'primeng',
-                    order: 'tailwind-base, primeng, tailwind-utilities'
-                }
-            }
-        }
-    })
-  ]
+    providers: [
+        provideBrowserGlobalErrorListeners(),
+        provideZoneChangeDetection({ eventCoalescing: true }),
+        provideRouter(routes),
+        provideAnimations(),
+        providePrimeNG({
+            theme: {
+                preset: MySystemPreset,
+                options: {
+                    darkModeSelector: '.dark',
+                    cssLayer: {
+                        name: 'primeng',
+                        order: 'tailwind-base, primeng, tailwind-utilities',
+                    },
+                },
+            },
+        }),
+    ],
 };
