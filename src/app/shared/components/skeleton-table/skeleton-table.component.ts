@@ -7,7 +7,7 @@ import { TableModule } from 'primeng/table';
     selector: 'app-skeleton-table',
     standalone: true,
     imports: [CommonModule, SkeletonModule, TableModule],
-    templateUrl: './skeleton-table.component.html'
+    templateUrl: './skeleton-table.component.html',
 })
 export class SkeletonTableComponent implements OnInit {
     @Input() rows: number = 5;

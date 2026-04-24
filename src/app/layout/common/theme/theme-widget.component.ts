@@ -6,7 +6,7 @@ import { ThemeService } from '../../../core/theme/theme.service';
     selector: 'app-theme-widget',
     standalone: true,
     imports: [CommonModule],
-    templateUrl: './theme-widget.component.html'
+    templateUrl: './theme-widget.component.html',
 })
 export class ThemeWidgetComponent {
     // Inyectamos tu servicio de temas directamente aquí

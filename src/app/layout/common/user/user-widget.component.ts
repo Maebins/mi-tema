@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
     selector: 'app-user-widget',
     standalone: true,
     imports: [CommonModule],
-    templateUrl: './user-widget.component.html'
+    templateUrl: './user-widget.component.html',
 })
 export class UserWidgetComponent {
     toggleMenu() {

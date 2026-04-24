@@ -69,7 +69,7 @@ export class DashboardComponent implements OnInit {
         if (this.userForm.valid) {
             this.isSaving = true;
             console.log('Datos a guardar:', this.userForm.value);
-            
+
             // Simulamos el tiempo de respuesta del servidor (2 segundos)
             setTimeout(() => {
                 this.isSaving = false;
@@ -94,26 +94,28 @@ export class DashboardComponent implements OnInit {
     confirmarEliminacion() {
         this.confirmationService.confirm({
             header: 'Eliminar Registro',
-            message: '¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.',
+            message:
+                '¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.',
             icon: 'pi pi-trash',
             acceptLabel: 'Eliminar',
             rejectLabel: 'Cancelar',
             acceptButtonStyleClass: 'danger', // Define el color del botón y del ícono
             accept: () => {
                 console.log('Registro eliminado con éxito');
-            }
+            },
         });
     }
 
     confirmarActivacion() {
         this.confirmationService.confirm({
             header: 'Activar Cuenta',
-            message: '¿Deseas activar esta cuenta para que el usuario pueda acceder nuevamente al sistema?',
+            message:
+                '¿Deseas activar esta cuenta para que el usuario pueda acceder nuevamente al sistema?',
             icon: 'pi pi-check-circle',
             acceptLabel: 'Activar',
             rejectLabel: 'Cancelar',
-            acceptButtonStyleClass: 'success', 
-            accept: () => console.log('Cuenta activada')
+            acceptButtonStyleClass: 'success',
+            accept: () => console.log('Cuenta activada'),
         });
     }
 
@@ -124,8 +126,8 @@ export class DashboardComponent implements OnInit {
             icon: 'pi pi-exclamation-triangle',
             acceptLabel: 'Suspender',
             rejectLabel: 'Cancelar',
-            acceptButtonStyleClass: 'warn', 
-            accept: () => console.log('Cuenta suspendida')
+            acceptButtonStyleClass: 'warn',
+            accept: () => console.log('Cuenta suspendida'),
         });
     }
 

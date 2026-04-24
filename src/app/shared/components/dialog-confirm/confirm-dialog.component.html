@@ -1,39 +1,55 @@
 <p-confirmDialog [key]="key" #cd>
     <ng-template pTemplate="headless" let-message>
-        <div class="flex flex-col items-center p-8 bg-surface-0 dark:bg-surface-900 rounded-2xl w-[90vw] sm:w-[450px]">
-            
+        <div
+            class="flex flex-col items-center p-8 bg-surface-0 dark:bg-surface-900 rounded-2xl w-[90vw] sm:w-[450px]"
+        >
             <!-- Contenedor del Icono Dinámico según Severidad -->
-            <div class="rounded-full inline-flex justify-center items-center h-16 w-16 mb-4 bg-surface-100 dark:bg-surface-800"
-                 [ngClass]="{
-                    '!bg-blue-100 !text-blue-600 dark:!bg-blue-900/40 dark:!text-blue-400': message.acceptButtonStyleClass === 'info',
-                    '!bg-red-100 !text-red-600 dark:!bg-red-900/40 dark:!text-red-400': message.acceptButtonStyleClass === 'danger',
-                    '!bg-orange-100 !text-orange-600 dark:!bg-orange-900/40 dark:!text-orange-400': message.acceptButtonStyleClass === 'warn',
-                    '!bg-green-100 !text-green-600 dark:!bg-green-900/40 dark:!text-green-400': message.acceptButtonStyleClass === 'success',
-                    '!bg-primary-100 !text-primary-600 dark:!bg-primary-900/40 dark:!text-primary-400': !message.acceptButtonStyleClass || message.acceptButtonStyleClass === 'primary'
-                 }">
+            <div
+                class="rounded-full inline-flex justify-center items-center h-16 w-16 mb-4 bg-surface-100 dark:bg-surface-800"
+                [ngClass]="{
+                    '!bg-blue-100 !text-blue-600 dark:!bg-blue-900/40 dark:!text-blue-400':
+                        message.acceptButtonStyleClass === 'info',
+                    '!bg-red-100 !text-red-600 dark:!bg-red-900/40 dark:!text-red-400':
+                        message.acceptButtonStyleClass === 'danger',
+                    '!bg-orange-100 !text-orange-600 dark:!bg-orange-900/40 dark:!text-orange-400':
+                        message.acceptButtonStyleClass === 'warn',
+                    '!bg-green-100 !text-green-600 dark:!bg-green-900/40 dark:!text-green-400':
+                        message.acceptButtonStyleClass === 'success',
+                    '!bg-primary-100 !text-primary-600 dark:!bg-primary-900/40 dark:!text-primary-400':
+                        !message.acceptButtonStyleClass ||
+                        message.acceptButtonStyleClass === 'primary',
+                }"
+            >
                 <i [class]="(message.icon || 'pi pi-question') + ' text-3xl'"></i>
             </div>
-            
+
             <!-- Textos -->
-            <span class="font-bold text-2xl block mb-2 text-secondary-900 dark:text-white text-center">{{ message.header || 'Confirmar' }}</span>
-            <p class="mb-0 text-center leading-normal text-secondary-600 dark:text-secondary-400">{{ message.message }}</p>
-            
+            <span
+                class="font-bold text-2xl block mb-2 text-secondary-900 dark:text-white text-center"
+                >{{ message.header || 'Confirmar' }}</span
+            >
+            <p class="mb-0 text-center leading-normal text-secondary-600 dark:text-secondary-400">
+                {{ message.message }}
+            </p>
+
             <!-- Botones de Acción usando nuestro propio app-button -->
             <div class="flex items-center gap-3 mt-8 w-full">
                 <div class="flex-1">
-                    <app-button 
-                        [label]="message.rejectLabel || 'Cancelar'" 
-                        [outlined]="true" 
-                        severity="secondary" 
+                    <app-button
+                        [label]="message.rejectLabel || 'Cancelar'"
+                        [outlined]="true"
+                        severity="secondary"
                         [fullWidth]="true"
-                        (onClick)="cd.onReject()"></app-button>
+                        (onClick)="cd.onReject()"
+                    ></app-button>
                 </div>
                 <div class="flex-1">
-                    <app-button 
-                        [label]="message.acceptLabel || 'Confirmar'" 
-                        [severity]="message.acceptButtonStyleClass || 'primary'" 
+                    <app-button
+                        [label]="message.acceptLabel || 'Confirmar'"
+                        [severity]="message.acceptButtonStyleClass || 'primary'"
                         [fullWidth]="true"
-                        (onClick)="cd.onAccept()"></app-button>
+                        (onClick)="cd.onAccept()"
+                    ></app-button>
                 </div>
             </div>
         </div>

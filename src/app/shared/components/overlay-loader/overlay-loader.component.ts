@@ -6,7 +6,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     selector: 'app-overlay-loader',
     standalone: true,
     imports: [CommonModule, ProgressSpinnerModule],
-    templateUrl: './overlay-loader.component.html'
+    templateUrl: './overlay-loader.component.html',
 })
 export class OverlayLoaderComponent {
     @Input() active: boolean = false;

@@ -6,12 +6,21 @@ import { ButtonModule } from 'primeng/button';
     selector: 'app-button',
     standalone: true,
     imports: [CommonModule, ButtonModule],
-    templateUrl: './button.component.html'
+    templateUrl: './button.component.html',
 })
 export class ButtonComponent {
     @Input() label: string | undefined;
     @Input() icon: string | undefined;
-    @Input() severity: 'success' | 'info' | 'warn' | 'danger' | 'help' | 'primary' | 'secondary' | 'contrast' | null = null;
+    @Input() severity:
+        | 'success'
+        | 'info'
+        | 'warn'
+        | 'danger'
+        | 'help'
+        | 'primary'
+        | 'secondary'
+        | 'contrast'
+        | null = null;
     @Input() outlined: boolean = false;
     @Input() text: boolean = false;
     @Input() raised: boolean = false;

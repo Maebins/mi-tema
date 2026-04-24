@@ -6,7 +6,7 @@ import { DialogModule } from 'primeng/dialog';
     selector: 'app-modal',
     standalone: true,
     imports: [CommonModule, DialogModule],
-    templateUrl: './modal.component.html'
+    templateUrl: './modal.component.html',
 })
 export class ModalComponent {
     @Input() visible: boolean = false;

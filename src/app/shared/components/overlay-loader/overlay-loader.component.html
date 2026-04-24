@@ -1,6 +1,17 @@
 @if (active) {
-    <div class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-surface-0/60 dark:bg-surface-900/60 backdrop-blur-[2px] transition-all duration-300">
-        <p-progressSpinner styleClass="w-12 h-12" strokeWidth="4" animationDuration=".5s"></p-progressSpinner>
-        @if (text) { <span class="mt-4 text-secondary-600 dark:text-secondary-300 font-medium animate-pulse">{{ text }}</span> }
+    <div
+        class="absolute inset-0 z-50 flex flex-col items-center justify-center bg-surface-0/60 dark:bg-surface-900/60 backdrop-blur-[2px] transition-all duration-300"
+    >
+        <p-progressSpinner
+            styleClass="w-12 h-12"
+            strokeWidth="4"
+            animationDuration=".5s"
+        ></p-progressSpinner>
+        @if (text) {
+            <span
+                class="mt-4 text-secondary-600 dark:text-secondary-300 font-medium animate-pulse"
+                >{{ text }}</span
+            >
+        }
     </div>
 }

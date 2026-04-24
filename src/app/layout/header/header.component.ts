@@ -14,7 +14,7 @@ import { UserWidgetComponent } from '../common/user/user-widget.component';
         SearchWidgetComponent,
         ThemeWidgetComponent,
         NotificationWidgetComponent,
-        UserWidgetComponent
+        UserWidgetComponent,
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',

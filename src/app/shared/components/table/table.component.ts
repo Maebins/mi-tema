@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, ContentChild, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
 import { TableColumn } from './table.models';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -32,6 +32,8 @@ export class TableComponent {
     @Output() onEdit = new EventEmitter<any>();
     @Output() onDelete = new EventEmitter<any>();
     @Output() onSelectionChange = new EventEmitter<any[]>();
+
+    @ContentChild('actionTemplate') actionTemplate!: TemplateRef<any>;
 
     // Guarda los elementos seleccionados temporalmente
     selectedItems: any[] = [];

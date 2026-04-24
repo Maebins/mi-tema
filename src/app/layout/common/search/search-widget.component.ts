@@ -7,7 +7,7 @@ import { ModalComponent } from '../../../shared/components/modal/modal.component
     selector: 'app-search-widget',
     standalone: true,
     imports: [CommonModule, SearchFieldComponent, ModalComponent],
-    templateUrl: './search-widget.component.html'
+    templateUrl: './search-widget.component.html',
 })
 export class SearchWidgetComponent {
     isSearchModalVisible: boolean = false;

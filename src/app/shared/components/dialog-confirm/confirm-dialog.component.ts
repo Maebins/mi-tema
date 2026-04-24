@@ -7,7 +7,7 @@ import { ButtonComponent } from '../button/button.component';
     selector: 'app-confirm-dialog',
     standalone: true,
     imports: [CommonModule, ConfirmDialogModule, ButtonComponent],
-    templateUrl: './confirm-dialog.component.html'
+    templateUrl: './confirm-dialog.component.html',
 })
 export class ConfirmDialogComponent {
     // Útil si necesitas múltiples dialogos de confirmación en una misma vista

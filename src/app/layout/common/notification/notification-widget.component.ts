@@ -6,7 +6,7 @@ import { BadgeModule } from 'primeng/badge';
     selector: 'app-notification-widget',
     standalone: true,
     imports: [CommonModule, BadgeModule],
-    templateUrl: './notification-widget.component.html'
+    templateUrl: './notification-widget.component.html',
 })
 export class NotificationWidgetComponent {
     unreadCount: number = 3; // Puedes conectar esto a un servicio después

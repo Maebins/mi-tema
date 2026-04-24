@@ -5,7 +5,19 @@ module.exports = {
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
+                sans: ['var(--font-family-base)', 'sans-serif'],
+            },
+            fontSize: {
+                xs: ['var(--font-size-xs)', '1.2'],
+                sm: ['var(--font-size-sm)', '1.25'],
+                md: ['var(--font-size-md)', '1.5'],
+                sl: ['var(--font-size-sl)', '1.5'],
+                lg: ['var(--font-size-lg)', '1.5'],
+                xl: ['var(--font-size-xl)', '1.5'],
+                '2xl': ['var(--font-size-2xl)', '1.5'],
+                '3xl': ['var(--font-size-3xl)', '1.2'],
+                '4xl': ['var(--font-size-4xl)', '1.2'],
+                '5xl': ['var(--font-size-5xl)', '1.1'],
             },
             colors: {
                 primary: {
