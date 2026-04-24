@@ -9,7 +9,13 @@
 # Node
 /node_modules
 npm-debug.log
+pnpm-debug.log
 yarn-error.log
+*.log
+
+# Entornos locales (Secretos/Tokens)
+.env
+.env.local
 
 # IDEs and editors
 .idea/
