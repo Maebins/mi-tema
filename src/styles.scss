@@ -34,7 +34,7 @@
     }
 
     body {
-        @apply m-0 p-0 antialiased text-slate-800 bg-slate-50 text-md;
+        @apply m-0 p-0 antialiased text-slate-800 bg-slate-50 text-xs;
         @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
         font-family: var(--font-family-base);
     }
@@ -88,12 +88,12 @@
     &.p-inputtext,
     .p-inputtext,
     .p-password input {
-        @apply border-danger-500 hover:border-danger-400 focus:border-danger-500 focus:ring-1 focus:ring-danger-500 #{!important};
+        @apply border-danger-500 hover:border-danger-400 focus:border-danger-500 focus:ring-1 focus:ring-danger-500 !important;
     }
 
     /* Select (Dropdown) */
     .p-dropdown {
-        @apply border-danger-500 hover:border-danger-400 #{!important};
+        @apply border-danger-500 hover:border-danger-400 !important;
     }
 }
 
@@ -102,3 +102,49 @@
 .p-dropdown {
     @apply transition-colors duration-200;
 }
+
+/* 4. Forzar tamaño de fuente text-xs (13px) en el Datepicker (Input y Panel) */
+p-datepicker .p-inputtext {
+    @apply text-xs;
+}
+
+.p-datepicker-panel,
+.p-datepicker {
+    .p-datepicker-title,
+    .p-datepicker-calendar th,
+    .p-datepicker-calendar td > span {
+        @apply text-xs !important;
+    }
+}
+
+/* 5. Forzar tamaño de fuente text-xs en el Paginador de la Tabla */
+.p-paginator,
+.p-paginator .p-paginator-current,
+.p-paginator .p-paginator-pages .p-paginator-page,
+.p-paginator .p-dropdown .p-dropdown-label {
+    @apply text-xs !important;
+}
+
+/* 6. Asegurar que los Botones hereden text-xs (13px) */
+.p-button,
+.p-button .p-button-label {
+    @apply text-xs !important;
+}
+
+/* 7. Forzar tamaño de fuente text-xs para controles de formulario de PrimeNG */
+.p-inputtext,
+.p-textarea,
+.p-dropdown .p-dropdown-label,
+.p-select .p-select-label,
+.p-multiselect .p-multiselect-label,
+.p-password input,
+.p-inputnumber input,
+.p-autocomplete input,
+.p-treeselect .p-treeselect-label,
+.p-cascadeselect .p-cascadeselect-label,
+.p-listbox .p-listbox-item,
+.p-chips .p-chips-token,
+.p-chips .p-chips-input-token input {
+    @apply text-xs !important;
+}
+

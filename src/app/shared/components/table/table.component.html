@@ -42,7 +42,9 @@
                     [pSortableColumn]="col.sortable ? col.field : undefined"
                     [style.width]="col.width"
                 >
-                    <div class="flex items-center gap-2 font-bold text-xs  text-secondary-700 dark:text-secondary-300">
+                    <div
+                        class="flex items-center gap-2 font-bold text-xs text-secondary-700 dark:text-secondary-300"
+                    >
                         {{ col.header }}
                         <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
                     </div>
@@ -51,7 +53,7 @@
                 <th
                     *ngIf="showActions"
                     style="width: 8rem"
-                    class="text-center text-secondary-700 font-bold text-xs  dark:text-secondary-300"
+                    class="text-center font-bold text-xs text-secondary-700 dark:text-secondary-300"
                 >
                     Acciones
                 </th>

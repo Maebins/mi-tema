@@ -8,7 +8,7 @@
     [rounded]="rounded"
     [disabled]="disabled"
     [type]="type"
-    [styleClass]="fullWidth ? 'w-full ' + styleClass : styleClass"
+    [styleClass]="fullWidth ? 'w-full text-xs ' + (styleClass ? styleClass : '') : 'text-xs ' + (styleClass ? styleClass : '')"
     (onClick)="onClick.emit($event)"
 >
 </p-button>
