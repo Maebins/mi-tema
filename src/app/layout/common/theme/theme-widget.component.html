@@ -1,0 +1,6 @@
+<button (click)="themeService.toggleTheme()" 
+        class="w-10 h-10 flex items-center justify-center text-secondary-500 dark:text-secondary-400 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors">
+<span class="material-symbols-rounded text-2xl">
+    {{ themeService.isDarkMode() ? 'light_mode' : 'dark_mode' }}
+</span>
+</button>

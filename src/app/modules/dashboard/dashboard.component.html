@@ -115,6 +115,15 @@
 </div>
 
 <div class="p-6 bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 my-8">
+    <h2 class="text-xl font-bold mb-6 text-secondary-900 dark:text-white">Prueba de Diálogos de Confirmación</h2>
+    <div class="flex flex-wrap gap-4">
+        <app-button label="Eliminar Registro" severity="danger" icon="pi pi-trash" (onClick)="confirmarEliminacion()"></app-button>
+        <app-button label="Activar Cuenta" severity="success" icon="pi pi-check-circle" (onClick)="confirmarActivacion()"></app-button>
+        <app-button label="Suspender Cuenta" severity="warn" icon="pi pi-exclamation-triangle" (onClick)="confirmarAdvertencia()"></app-button>
+    </div>
+</div>
+
+<div class="p-6 bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 my-8">
     <h2 class="text-xl font-bold mb-6 text-secondary-900 dark:text-white">Prueba de Modal Universal</h2>
     <app-button label="Abrir Modal de Detalles" icon="pi pi-external-link" (onClick)="abrirModal()"></app-button>
 </div>
@@ -151,5 +160,8 @@
         </app-table>
     }
 </div>
+
+<!-- Contenedor base de los confirm dialogues (se pone una vez por vista o en el layout raíz) -->
+<app-confirm-dialog></app-confirm-dialog>
 
 </div>

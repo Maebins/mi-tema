@@ -1,0 +1,12 @@
+
+
+<button
+    class="relative w-10 h-10 flex items-center justify-center text-secondary-500 dark:text-secondary-400 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors"
+    (onClick)="abrirNotificaciones()"
+>
+    <span class="material-symbols-rounded">notifications</span>
+    <span
+        class="absolute top-0 right-0 h-5 w-5 bg-primary-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-secondary-900">
+        {{ unreadCount.toString() }}
+    </span>
+</button>

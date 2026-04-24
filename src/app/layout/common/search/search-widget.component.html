@@ -1,0 +1,19 @@
+<!-- Vista de Escritorio: Buscador completo (Oculto en pantallas pequeñas) -->
+<div class="hidden md:block w-full">
+    <app-search-field placeholder="Buscar en el sistema..." (search)="ejecutarBusqueda($event)"></app-search-field>
+</div>
+
+<!-- Vista Móvil: Botón de Lupa (Oculto en pantallas medianas o grandes) -->
+<div class="block md:hidden">
+    <button
+        class="relative w-10 h-10 flex items-center justify-center text-secondary-500 dark:text-secondary-400 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors"
+        (click)="abrirBusqueda()"
+    >
+        <span class="material-symbols-rounded">search</span>
+    </button>
+</div>
+
+<!-- Modal para la búsqueda en versión móvil -->
+<app-modal [(visible)]="isSearchModalVisible" header="Búsqueda" width="90vw" styleClass="max-w-md">
+    <app-search-field placeholder="¿Qué deseas buscar?..." [showButton]="true" buttonText="Buscar" (search)="ejecutarBusqueda($event)"></app-search-field>
+</app-modal>

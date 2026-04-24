@@ -11,6 +11,8 @@ import { ButtonComponent } from '../../shared/components/button/button.component
 import { SkeletonTableComponent } from '../../shared/components/skeleton-table/skeleton-table.component';
 import { OverlayLoaderComponent } from '../../shared/components/overlay-loader/overlay-loader.component';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { ConfirmDialogComponent } from '../../shared/components/dialog-confirm/confirm-dialog.component';
+import { ConfirmationService } from 'primeng/api';
 @Component({
     selector: 'app-dashboard',
     imports: [
@@ -25,12 +27,15 @@ import { ModalComponent } from '../../shared/components/modal/modal.component';
         OverlayLoaderComponent,
         SkeletonTableComponent,
         ModalComponent,
+        ConfirmDialogComponent,
     ],
+    providers: [ConfirmationService],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.scss',
 })
 export class DashboardComponent implements OnInit {
     private fb = inject(FormBuilder);
+    private confirmationService = inject(ConfirmationService);
 
     // Estados de carga
     isDashboardLoading = true;
@@ -83,6 +88,45 @@ export class DashboardComponent implements OnInit {
 
     cerrarModal() {
         this.isModalVisible = false;
+    }
+
+    // --- Ejemplos del Confirm Dialog ---
+    confirmarEliminacion() {
+        this.confirmationService.confirm({
+            header: 'Eliminar Registro',
+            message: '¿Estás seguro de que deseas eliminar este usuario? Esta acción no se puede deshacer.',
+            icon: 'pi pi-trash',
+            acceptLabel: 'Eliminar',
+            rejectLabel: 'Cancelar',
+            acceptButtonStyleClass: 'danger', // Define el color del botón y del ícono
+            accept: () => {
+                console.log('Registro eliminado con éxito');
+            }
+        });
+    }
+
+    confirmarActivacion() {
+        this.confirmationService.confirm({
+            header: 'Activar Cuenta',
+            message: '¿Deseas activar esta cuenta para que el usuario pueda acceder nuevamente al sistema?',
+            icon: 'pi pi-check-circle',
+            acceptLabel: 'Activar',
+            rejectLabel: 'Cancelar',
+            acceptButtonStyleClass: 'success', 
+            accept: () => console.log('Cuenta activada')
+        });
+    }
+
+    confirmarAdvertencia() {
+        this.confirmationService.confirm({
+            header: 'Cambio de Estado',
+            message: 'Estás a punto de suspender esta cuenta temporalmente. ¿Deseas continuar?',
+            icon: 'pi pi-exclamation-triangle',
+            acceptLabel: 'Suspender',
+            rejectLabel: 'Cancelar',
+            acceptButtonStyleClass: 'warn', 
+            accept: () => console.log('Cuenta suspendida')
+        });
     }
 
     // Describes las columnas una sola vez
