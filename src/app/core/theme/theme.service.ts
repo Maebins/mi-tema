@@ -5,14 +5,12 @@ import { ThemeMode } from './theme.type';
     providedIn: 'root',
 })
 export class ThemeService {
-    // Signal que guarda el estado actual. Por defecto busca en localStorage o usa 'system'
+    
     themeMode = signal<ThemeMode>(this.getStoredTheme());
 
-    // Signal computada que nos dice si actualmente está activo el modo oscuro visualmente
     isDarkMode = signal<boolean>(false);
 
     constructor() {
-        // Escuchar cambios en la preferencia del sistema operativo del usuario
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
             if (this.themeMode() === 'system') {
                 this.applyTheme('system');

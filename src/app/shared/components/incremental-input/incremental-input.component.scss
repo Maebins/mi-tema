@@ -1,0 +1,22 @@
+:host ::ng-deep .inputnumber-borderless {
+    width: 100%;
+}
+
+:host ::ng-deep .inputnumber-borderless .p-inputtext,
+:host ::ng-deep .inputnumber-borderless .p-inputnumber-input,
+:host ::ng-deep .inputnumber-borderless__input {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    padding: 0.25rem 0.5rem !important;
+    text-align: center !important;
+}
+
+:host ::ng-deep .inputnumber-borderless .p-inputtext:enabled:focus,
+:host ::ng-deep .inputnumber-borderless .p-inputnumber-input:enabled:focus,
+:host ::ng-deep .inputnumber-borderless__input:enabled:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}

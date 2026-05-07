@@ -1,0 +1,41 @@
+<label
+    class="group inline-flex cursor-pointer items-center gap-3"
+    [class.opacity-50]="isDisabled"
+    [class.cursor-not-allowed]="isDisabled"
+>
+    <div class="relative flex items-center">
+        <input
+            type="checkbox"
+            class="sr-only"
+            [checked]="value"
+            [disabled]="isDisabled"
+            (change)="onNativeChange($event)"
+            (blur)="onTouched()"
+        />
+        
+        <div
+            class="flex h-5 w-5 items-center justify-center rounded-[4px] border-2 transition-all duration-200"
+            [ngClass]="getBoxClasses()"
+        >
+            @if (value) {
+                <svg
+                    class="h-3.5 w-3.5 text-white"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                >
+                    <path 
+                        fill-rule="evenodd" 
+                        d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" 
+                        clip-rule="evenodd" 
+                    />
+                </svg>
+            }
+        </div>
+    </div>
+
+    @if (label) {
+        <span class="select-none text-base text-gray-scale-700 transition-colors dark:text-gray-scale-200 group-hover:text-black dark:group-hover:text-white">
+            {{ label }}
+        </span>
+    }
+</label>

@@ -1,0 +1,47 @@
+<div 
+    class="flex" 
+    [ngClass]="layout === 'col' ? 'flex-col gap-3' : 'flex-row flex-wrap gap-6'"
+>
+    @for (item of items; track item.value) {
+        <label 
+            class="group relative flex cursor-pointer items-center gap-3"
+            [class.opacity-50]="isDisabled"
+            [class.cursor-not-allowed]="isDisabled"
+        >
+            <input 
+                type="radio" 
+                [name]="groupName" 
+                [value]="item.value"
+                [checked]="value === item.value"
+                [disabled]="isDisabled"
+                (change)="onSelect(item.value)"
+                class="peer sr-only"
+            />
+            
+            <div 
+                class="flex h-5 w-5 items-center justify-center rounded-full border-2 bg-white transition-all duration-200 dark:bg-dark-scale-800"
+                [ngClass]="
+                    value === item.value 
+                        ? getColorClasses() 
+                        : 'border-gray-scale-300 dark:border-gray-scale-500 group-hover:border-gray-scale-400 dark:group-hover:border-gray-scale-400'
+                "
+            >
+                <div 
+                    class="h-2.5 w-2.5 rounded-full transition-transform duration-200"
+                    [ngClass]="value === item.value ? 'scale-100 bg-current' : 'scale-0'"
+                ></div>
+            </div>
+
+            <span 
+                class="select-none text-sm font-semibold transition-colors duration-200"
+                [ngClass]="
+                    value === item.value 
+                        ? 'text-dark-scale dark:text-white' 
+                        : 'text-gray-scale-600 dark:text-gray-scale-300 group-hover:text-dark-scale dark:group-hover:text-white'
+                "
+            >
+                {{ item.label }}
+            </span>
+        </label>
+    }
+</div>

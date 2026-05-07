@@ -1,0 +1,56 @@
+<div class="flex flex-col w-full overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-dark-scale dark:border-gray-scale-600">
+    
+    <div class="flex items-center justify-between border-b border-gray-scale-200 px-6 py-4 dark:border-dark-scale-700">
+        <h2 class="m-0 text-lg font-bold text-primary dark:text-white">Ajustar Imagen</h2>
+        
+        <button 
+            (click)="onNoClick()" 
+            class="flex h-8 w-8 items-center justify-center rounded-full text-gray-scale-400 transition-colors hover:bg-gray-100 hover:text-dark-scale dark:hover:bg-dark-scale-700 dark:hover:text-white">
+            <i class="pi pi-times"></i>
+        </button>
+    </div>
+
+    <div class="relative flex h-[40vh] w-full items-center justify-center overflow-hidden bg-gray-50 px-8 py-4 md:h-[400px] dark:bg-dark-scale-900/50">
+        
+        <div *ngIf="isLoading()" class="absolute inset-0 z-10 flex items-center justify-center bg-white/50 backdrop-blur-sm dark:bg-dark-scale-900/50">
+            <span class="text-sm font-bold text-primary dark:text-secondary">Cargando imagen...</span>
+        </div>
+
+        <image-cropper
+            [imageChangedEvent]="data.imageChangedEvent"
+            [imageFile]="data.imageFile"
+            [maintainAspectRatio]="true"
+            [aspectRatio]="4 / 3"
+            format="jpeg"
+            [imageQuality]="80"
+            [resizeToWidth]="1000"
+            (imageCropped)="imageCropped($event)"
+            (imageLoaded)="imageLoaded()"
+            (loadImageFailed)="loadImageFailed()"
+            class="h-full w-full outline-none"
+            style="background: transparent;"
+        ></image-cropper>
+    </div>
+
+    <div class="flex items-center justify-end gap-3 border-t border-gray-scale-200 px-6 py-4 dark:border-dark-scale-700">
+        <app-button
+            [config]="{
+                label: 'Cancelar',
+                type: 'neutral',
+                ghost: true,
+                outlined: true
+            }"
+            (click)="onNoClick()"
+        ></app-button>
+        
+        <app-button
+            [config]="{
+                label: 'Guardar Recorte',
+                type: 'primary',
+                outlined: false,
+                disabled: !croppedResult
+            }"
+            (click)="save()"
+        ></app-button>
+    </div>
+</div>

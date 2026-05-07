@@ -2,19 +2,21 @@ import { Component, inject } from '@angular/core';
 import { LayoutService } from '../../core/layout/layout.service';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../core/theme/theme.service';
-import { SearchWidgetComponent } from '../common/search/search-widget.component';
+//import { SearchWidgetComponent } from '../common/search/search-widget.component';
 import { ThemeWidgetComponent } from '../common/theme/theme-widget.component';
 import { NotificationWidgetComponent } from '../common/notification/notification-widget.component';
 import { UserWidgetComponent } from '../common/user/user-widget.component';
+import { VoiceSwitchComponent } from '../common/voice-switch/voice-switch.component';
 
 @Component({
     selector: 'app-header',
     imports: [
         CommonModule,
-        SearchWidgetComponent,
+        //SearchWidgetComponent,
         ThemeWidgetComponent,
         NotificationWidgetComponent,
         UserWidgetComponent,
+        VoiceSwitchComponent
     ],
     templateUrl: './header.component.html',
     styleUrl: './header.component.scss',

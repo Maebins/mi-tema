@@ -1,0 +1,41 @@
+@if (isVisible()) {
+    <div 
+        class="relative flex w-full items-start gap-4 rounded-r-lg border-l-4 p-4 shadow-sm transition-all duration-300 dark:shadow-none"
+        [ngClass]="colorClasses.container"
+        role="alert"
+    >
+        @if (showIcon) {
+            <div class="flex-shrink-0 mt-0.5">
+                <i [class]="iconClass" class="text-xl" [ngClass]="colorClasses.icon"></i>
+            </div>
+        }
+
+        <div class="flex-1">
+            @if (title) {
+                <h3 class="text-sm font-bold text-dark-scale dark:text-white mb-1">
+                    {{ title }}
+                </h3>
+            }
+            <div class="text-sm text-gray-scale-600 dark:text-gray-scale-300">
+                @if (message) {
+                    {{ message }}
+                } @else {
+                    <ng-content></ng-content>
+                }
+            </div>
+        </div>
+
+        @if (dismissible) {
+            <div class="ml-auto flex-shrink-0 pl-3">
+                <button 
+                    (click)="closeAlert()"
+                    class="inline-flex h-8 w-8 items-center justify-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-scale-400 focus:ring-offset-1 dark:focus:ring-offset-dark-scale-900"
+                    [ngClass]="colorClasses.closeBtn"
+                    aria-label="Cerrar alerta"
+                >
+                    <i class="pi pi-times text-sm"></i>
+                </button>
+            </div>
+        }
+    </div>
+}

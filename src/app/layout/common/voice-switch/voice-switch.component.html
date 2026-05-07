@@ -1,0 +1,23 @@
+<div class="flex justify-center">
+    @if (isVoiceEnabled) {
+        <button
+            class="relative w-10 h-10 flex items-center justify-center text-gray-scale dark:text-gray-scale-200 hover:text-dark-scale dark:hover:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 focus:outline-none focus:ring-2 focus:ring-gray-scale-200 dark:focus:ring-gray-scale-700 rounded-full transition-colors"
+            pTooltip="Desactivar voz"
+            tooltipPosition="bottom"
+            appVoiceGuide="Desactivar Voz"
+            (click)="toggleVoice()"
+        >
+            <span class="material-symbols-rounded text-xl">volume_up</span>
+        </button>
+    } @else {
+        <button
+            class="relative w-10 h-10 flex items-center justify-center text-gray-scale dark:text-gray-scale-200 hover:text-dark-scale dark:hover:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 focus:outline-none focus:ring-2 focus:ring-gray-scale-200 dark:focus:ring-gray-scale-700 rounded-full transition-colors"
+            pTooltip="Activar voz"
+            tooltipPosition="bottom"
+            appVoiceGuide="Activar Voz"
+            (click)="toggleVoice()"
+        >
+            <span class="material-symbols-rounded text-xl">volume_off</span>
+        </button>
+    }
+</div>

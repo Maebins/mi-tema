@@ -1,0 +1,64 @@
+<!-- Label opcional -->
+<ng-container *ngIf="config.label">
+    <label
+        class="font-regular mb-2 block text-dark-scale dark:text-white"
+        [pTooltip]="config.labelTooltip || ''"
+        [tooltipPosition]="config.tooltipPosition || 'top'"
+        [tooltipDisabled]="!config.labelTooltip"
+    >
+        {{ config.label }}
+    </label>
+</ng-container>
+
+<div class="relative w-full">
+    <!-- Icono de búsqueda
+    <i
+        class="pi pi-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none"
+    ></i> -->
+
+    <p-autoComplete
+        [formControl]="control"
+        [suggestions]="suggestions"
+        [optionLabel]="config.field || 'descripcion'"
+        [forceSelection]="config.forceSelection ?? true"
+        [placeholder]="config.placeholder"
+        [appendTo]="'body'"
+        [autoZIndex]="true"
+        [baseZIndex]="10000"
+        (completeMethod)="completeMethod($event)"
+        (onSelect)="onSelect($event)"
+        (onBlur)="onBlur()"
+        (onDropdownClick)="onDropdownClick()"
+        class="w-full"
+        inputStyleClass="p-inputtext w-full text-base"
+        [class.has-error]="hasError"
+        [pTooltip]="getInputTooltipValue()"
+        [tooltipPosition]="config.tooltipPosition || 'top'"
+        [tooltipDisabled]="!getInputTooltipValue()"
+    >
+        <ng-template let-item pTemplate="item">
+            <div
+                class="w-full"
+                [ngClass]="{
+                    'overflow-hidden text-ellipsis whitespace-nowrap': config.truncate
+                }"
+                [pTooltip]="config.tooltip ? getTooltipValue(item) : ''"
+                tooltipPosition="right"
+            >
+                {{ getDisplayValue(item) }}
+            </div>
+        </ng-template>
+    </p-autoComplete>
+</div>
+
+@if (isRequiredError) {
+    <div class="mt-1 text-xs text-red-600">
+        {{ config.label }} es obligatorio.
+    </div>
+}
+
+@if (!isRequiredError && hasError) {
+    <div class="mt-1 text-xs text-red-600">
+        El valor ingresado no es válido.
+    </div>
+}

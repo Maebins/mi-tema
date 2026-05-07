@@ -1,0 +1,27 @@
+<div class="group relative flex w-full items-center">
+    
+    <i 
+        class="pi pi-search absolute left-4 text-gray-scale-400 transition-colors duration-300 group-focus-within:text-primary dark:text-gray-scale-500 dark:group-focus-within:text-secondary"
+    ></i>
+
+    <input
+        type="text"
+        [placeholder]="placeholder"
+        [(ngModel)]="value"
+        (input)="onInput()"
+        (keyup.enter)="onAction()"
+        [disabled]="isDisabled"
+        class="h-10 w-full rounded-xl border-2 border-gray-scale-200 bg-cream-200 pl-11 text-dark-scale transition-colors placeholder:text-gray-scale focus:border-primary focus:outline-none focus:ring-0 focus:ring-offset-0 focus:shadow-none disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-scale-700 dark:bg-dark-scale-800 dark:text-white dark:placeholder:text-gray-scale-200 dark:focus:border-secondary"
+        [ngClass]="showButton ? 'pr-28' : 'pr-4'"
+    />
+
+    @if (showButton) {
+        <button
+            (click)="onAction()"
+            [disabled]="isDisabled"
+            class="absolute right-1.5 h-7 rounded-lg bg-primary px-4 text-xs font-bold text-white transition-colors hover:bg-primary-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-secondary dark:text-dark-scale dark:hover:bg-yellow-500"
+        >
+            {{ buttonText }}
+        </button>
+    }
+</div>

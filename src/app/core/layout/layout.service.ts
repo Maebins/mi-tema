@@ -41,12 +41,23 @@ export class LayoutService {
     // 3. DATOS DEL MENÚ (Ejemplo basado en tus imágenes)
     getMenu(): AppMenuItem[] {
         return [
+            { label: 'Patrimonio', title: true }, // Título de sección
             {
                 label: 'Dashboard',
                 icon: 'home', // Usando Material Symbol Rounded
                 routerLink: ['/dashboard'],
                 children: [
+                    { label: 'Analysis', routerLink: ['/dashboard/analysis'],
+                        children: [
+                    { label: 'Analysis', routerLink: ['/dashboard/analysis'],
+                        children: [
                     { label: 'Analysis', routerLink: ['/dashboard/analysis'] },
+                    { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
+                ],
+                     },
+                    { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
+                ],
+                     },
                     { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
                 ],
             },

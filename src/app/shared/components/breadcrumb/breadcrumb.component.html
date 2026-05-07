@@ -1,0 +1,38 @@
+<nav class="mb-4 flex" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <!-- version anterior
+     @for (item of items; track item.label; let last = $last) {}
+    -->
+
+        @for (item of visibleItems; track item.label; let last = $last) {
+            <li class="inline-flex items-center">
+                @if (!$first) {
+                    <svg
+                        class="mx-1 h-4 w-4 text-gray-400"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                            clip-rule="evenodd"
+                            fill-rule="evenodd"
+                        ></path>
+                    </svg>
+                }
+
+                @if (!last) {
+                    <a
+                        [routerLink]="item.url"
+                        class="text-lg font-bold text-dark-scale dark:text-gray-scale-200 hover:text-primary transition-colors"
+                    >
+                        {{ item.label }}
+                    </a>
+                } @else {
+                    <span class="text-lg font-bold text-primary dark:text-secondary">
+                        {{ item.label }}
+                    </span>
+                }
+            </li>
+        }
+    </ol>
+</nav>

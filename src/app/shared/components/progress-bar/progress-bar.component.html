@@ -1,0 +1,23 @@
+<div class="flex w-full flex-col gap-2">
+    @if (showLabel) {
+        <div class="flex items-end justify-between">
+            <span class="text-sm font-bold text-gray-scale-600 dark:text-gray-scale-300">
+                {{ label }}
+            </span>
+            <span class="text-xs font-black tracking-wider" [ngClass]="textClass">
+                {{ progress }}%
+            </span>
+        </div>
+    }
+
+    <div 
+        class="w-full overflow-hidden rounded-full bg-gray-scale-200 dark:bg-dark-scale-700" 
+        [ngClass]="trackHeight"
+    >
+        <div
+            class="h-full rounded-full transition-all duration-700 ease-out"
+            [ngClass]="[barClass, animated ? 'animate-pulse' : '']"
+            [style.width.%]="progress"
+        ></div>
+    </div>
+</div>

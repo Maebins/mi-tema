@@ -1,144 +1,120 @@
-<div
-    class="bg-surface-0 dark:bg-surface-900 rounded-xl shadow-sm border border-secondary-200 dark:border-secondary-700 overflow-hidden"
->
-    <p-table
-        #dt
-        [value]="data"
-        [columns]="columns"
-        [paginator]="paginator"
-        [rows]="rows"
-        [rowsPerPageOptions]="[5, 10, 20, 50]"
-        [globalFilterFields]="globalFilterFields"
-        [selectionMode]="'multiple'"
-        [(selection)]="selectedItems"
-        (selectionChange)="onSelectionChange.emit(selectedItems)"
-        styleClass="p-datatable-sm"
-        [rowHover]="true"
-    >
-        <ng-template pTemplate="caption" *ngIf="showGlobalFilter">
-            <div
-                class="flex flex-col md:flex-row justify-between items-center gap-4 p-4 border-b border-secondary-200 dark:border-secondary-700"
-            >
-                <h3 class="text-lg font-bold text-secondary-900 dark:text-white">{{ title }}</h3>
-
-                <div class="w-full md:w-72">
-                    <app-search-field
-                        placeholder="Buscar en la tabla..."
-                        (valueChange)="dt.filterGlobal($event, 'contains')"
-                    >
-                    </app-search-field>
-                </div>
-            </div>
-        </ng-template>
-
-        <ng-template pTemplate="header" let-columns>
-            <tr>
-                <th *ngIf="showSelection" style="width: 4rem" class="text-center">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                </th>
-
-                <th
-                    *ngFor="let col of columns"
-                    [pSortableColumn]="col.sortable ? col.field : undefined"
-                    [style.width]="col.width"
-                >
-                    <div
-                        class="flex items-center gap-2 font-bold text-xs text-secondary-700 dark:text-secondary-300"
-                    >
+<div [ngClass]="getDesignClasses()" class="w-full">
+    <div class="custom-scrollbar w-full overflow-x-auto">
+        <table class="w-full min-w-max text-[13px]">
+            <thead>
+                <tr class="h-[52px] border-b border-gray-scale-200 bg-gray-50 text-center font-sans text-xs font-bold uppercase tracking-wider text-gray-scale-500 dark:border-dark-scale-700 dark:bg-dark-scale-800 dark:text-gray-scale-400">
+                    
+                    <th *ngFor="let col of columns" class="px-3 py-2" [ngStyle]="getColumnStyles(col)">
                         {{ col.header }}
-                        <p-sortIcon *ngIf="col.sortable" [field]="col.field"></p-sortIcon>
-                    </div>
-                </th>
+                    </th>
 
-                <th
-                    *ngIf="showActions"
-                    style="width: 8rem"
-                    class="text-center font-bold text-xs text-secondary-700 dark:text-secondary-300"
+                    <th *ngIf="showSelectColumn" class="px-3 py-2">
+                        {{ selectColumnHeader }}
+                    </th>
+
+                    <th *ngIf="showStatusColumn" class="px-3 py-2">
+                        {{ statusColumnHeader }}
+                    </th>
+
+                    <th *ngIf="actions.length > 0" class="sticky right-0 z-10 w-[140px] min-w-[140px] bg-gray-50 px-3 py-2 shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.05)] dark:bg-dark-scale-800 dark:shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.5)]">
+                        {{ actionsHeader }}
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let row of data"
+                    class="group h-[56px] border-b border-gray-scale-100 font-sans text-dark-scale transition-colors duration-150 odd:bg-white even:bg-gray-50 hover:bg-primary/5 dark:border-dark-scale-800 dark:text-white-scale dark:odd:bg-dark-scale-950 dark:even:bg-dark-scale-900 dark:hover:bg-secondary/10"
                 >
-                    Acciones
-                </th>
-            </tr>
-        </ng-template>
+                    <td *ngFor="let col of columns" class="px-3 py-2 text-center" [ngStyle]="getColumnStyles(col)" [style.wordBreak]="col.width ? 'break-word' : null">
+                        <span *ngIf="col.editable" contenteditable="true" [textContent]="row[col.field]" (blur)="row[col.field] = $any($event.target).innerText" class="block min-h-[28px] w-full cursor-text rounded border border-transparent px-2 py-1 outline-none transition-colors hover:bg-gray-100 focus:border-primary focus:bg-white focus:ring-0 dark:hover:bg-dark-scale-700 dark:focus:border-secondary dark:focus:bg-dark-scale-800"></span>
+                        <span *ngIf="!col.editable" class="font-medium">
+                            @if (col.type === 'date') { {{ row[col.field] | date: 'dd/MM/yyyy h:mm a' }} } @else { {{ row[col.field] }} }
+                        </span>
+                    </td>
 
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-            <tr class="text-secondary-700 text-xs dark:text-secondary-200 transition-colors">
-                <td *ngIf="showSelection" class="text-center">
-                    <p-tableCheckbox [value]="rowData"></p-tableCheckbox>
-                </td>
+                    <td *ngIf="showSelectColumn" class="px-3 py-2">
+                        <div class="flex w-full items-center justify-center">
+                            <app-form-field class="w-full min-w-[120px] text-left" [config]="{ type: 'selectValue', options: selectOptions }" [ngModel]="row[selectColumnField]" (ngModelChange)="onSelectValueChange(row, $event)"></app-form-field>
+                        </div>
+                    </td>
 
-                <td *ngFor="let col of columns">
-                    <span *ngIf="!col.type || col.type === 'text'">
-                        {{ rowData[col.field] }}
-                    </span>
+                    <td *ngIf="showStatusColumn" class="px-3 py-2">
+                        <div class="flex w-full items-center justify-center">
+                            <app-table-status-chip *ngIf="statusColumnType === 'estado'" [label]="row.estadoLabel" [type]="row.estadoType" [useTailwindColors]="true"></app-table-status-chip>
+                            <app-check-box *ngIf="statusColumnType === 'checkbox'" [ngModel]="row.checked" (ngModelChange)="onCheckboxChange(row, $event)"></app-check-box>
+                            <ng-container *ngIf="statusColumnType === 'custom' && statusTemplate" [ngTemplateOutlet]="statusTemplate" [ngTemplateOutletContext]="{ $implicit: row }"></ng-container>
+                        </div>
+                    </td>
 
-                    <span
-                        *ngIf="col.type === 'currency'"
-                        class="font-medium text-primary-600 dark:text-primary-400"
-                    >
-                        {{ rowData[col.field] | currency: 'USD' }}
-                    </span>
+                    <td *ngIf="actions.length > 0" class="sticky right-0 z-10 bg-inherit px-2 py-2 shadow-[-12px_0_15px_-5px_rgba(0,0,0,0.02)] dark:shadow-[-12px_0_15px_-5px_rgba(0,0,0,0.4)]">
+                        <div class="flex items-center justify-center gap-1">
+                            
+                            <button *ngIf="actions.includes('view')" (click)="emit('view', row)" matTooltip="Ver" class="flex h-8 w-8 items-center justify-center rounded-full text-gray-scale-400 transition-colors hover:bg-gray-200 hover:text-primary dark:hover:bg-dark-scale-700 dark:hover:text-secondary"><i class="pi pi-eye text-[15px]"></i></button>
+                            <button *ngIf="actions.includes('edit')" (click)="emit('edit', row)" matTooltip="Editar" class="flex h-8 w-8 items-center justify-center rounded-full text-green-custom transition-colors hover:bg-green-100 dark:text-green-500 dark:hover:bg-green-500/20"><i class="pi pi-pencil text-[15px]"></i></button>
+                            <button *ngIf="actions.includes('delete')" (click)="emit('delete', row)" matTooltip="Eliminar" class="flex h-8 w-8 items-center justify-center rounded-full text-red-custom transition-colors hover:bg-red-100 dark:text-red-400 dark:hover:bg-red-500/20"><i class="pi pi-trash text-[15px]"></i></button>
+                            
+                            <div *ngIf="actions.includes('agregarET')" class="scale-[0.80] origin-center">
+                                <app-button [config]="{ label: 'AgregarET', type: 'tertiary', outlined: false, style:'h-7 w-20 rounded p-4' }" (click)="emit('agregarET', row)"></app-button>
+                            </div>
+                            
+                            <button *ngIf="actions.includes('disable')" (click)="emit('disable', row)" matTooltip="Deshabilitar" class="flex h-8 w-8 items-center justify-center rounded-full text-brown-custom-500 dark:text-secondary-400 transition-colors hover:bg-brown-custom-500/20 dark:hover:bg-brown-custom-500/20"><i class="pi pi-minus-circle text-[15px]"></i></button>
+                            
+                            <button *ngIf="actions.includes('print')" (click)="emit('print', row)" matTooltip="Imprimir" class="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 transition-colors hover:bg-blue-100 hover:text-blue-700 dark:text-blue-400 dark:hover:bg-blue-500/20 dark:hover:text-blue-300"><i class="pi pi-print text-[15px]"></i></button>
+                            <button *ngIf="actions.includes('download')" (click)="emit('download', row)" matTooltip="Descargar" class="flex h-8 w-8 items-center justify-center rounded-full text-blue-500 transition-colors hover:bg-blue-100 hover:text-blue-700 dark:text-blue-400 dark:hover:bg-blue-500/20 dark:hover:text-blue-300"><i class="pi pi-download text-[15px]"></i></button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
 
-                    <span
-                        *ngIf="col.type === 'boolean'"
-                        class="px-2 py-1 rounded-full text-xs font-bold"
-                        [ngClass]="
-                            rowData[col.field]
-                                ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400'
-                                : 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400'
-                        "
-                    >
-                        {{ rowData[col.field] ? 'Activo' : 'Inactivo' }}
-                    </span>
-                </td>
+            <tfoot>
+                <tr>
+                    <td [attr.colspan]="columns.length + (showStatusColumn ? 1 : 0) + (showSelectColumn ? 1 : 0) + (actions.length > 0 ? 1 : 0)" class="h-[60px] p-0 border-t border-gray-scale-200 dark:border-dark-scale-700">
+                        <div class="flex flex-col items-center justify-between gap-4 bg-white px-6 py-3 sm:flex-row dark:bg-dark-scale-900">
+                            
+                            @if(totalPages > 1) {
+                                <div class="flex items-center justify-start gap-1 sm:gap-2">
+                                    <button class="flex h-[32px] w-[32px] items-center justify-center rounded-lg border border-gray-scale-200 bg-white text-gray-scale-500 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-gray-scale-400 dark:hover:border-secondary dark:hover:text-secondary" [disabled]="page === 1" (click)="changePage(1)">&laquo;</button>
+                                    <button class="flex h-[32px] w-[32px] items-center justify-center rounded-lg border border-gray-scale-200 bg-white text-gray-scale-500 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-gray-scale-400 dark:hover:border-secondary dark:hover:text-secondary" [disabled]="page === 1" (click)="changePage(page - 1)">&lsaquo;</button>
 
-                <td *ngIf="showActions" class="text-center">
-                    <div class="flex items-center justify-center gap-2">
-                        <!-- Proyección de acciones personalizadas -->
-                        <ng-container *ngIf="actionTemplate">
-                            <ng-container
-                                *ngTemplateOutlet="actionTemplate; context: { $implicit: rowData }"
-                            ></ng-container>
-                        </ng-container>
+                                    <ng-container *ngFor="let p of getVisiblePages()">
+                                        <span *ngIf="p === '...'" class="px-1 font-bold text-gray-scale-400 dark:text-gray-scale-500">...</span>
+                                        
+                                        <button *ngIf="p !== '...'"
+                                            class="flex h-[32px] w-[32px] items-center justify-center rounded-lg text-sm font-bold transition-all duration-200"
+                                            [ngClass]="
+                                                page === p
+                                                    ? 'border-primary bg-primary text-white shadow-md shadow-primary/20 dark:border-secondary dark:bg-secondary dark:text-dark-scale dark:shadow-secondary/20'
+                                                    : 'border border-gray-scale-200 bg-white text-gray-scale-600 hover:border-primary hover:text-primary dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-gray-scale-300 dark:hover:border-secondary dark:hover:text-secondary'
+                                            "
+                                            (click)="changePage($any(p))"
+                                        >
+                                            {{ p }}
+                                        </button>
+                                    </ng-container>
 
-                        <!-- Fallback: Botones por defecto si no hay template personalizado -->
-                        <ng-container *ngIf="!actionTemplate">
-                            <p-button
-                                icon="material-symbols-rounded edit"
-                                severity="secondary"
-                                [rounded]="true"
-                                [text]="true"
-                                (onClick)="onEdit.emit(rowData)"
-                            ></p-button>
+                                    <button class="flex h-[32px] w-[32px] items-center justify-center rounded-lg border border-gray-scale-200 bg-white text-gray-scale-500 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-gray-scale-400 dark:hover:border-secondary dark:hover:text-secondary" [disabled]="page === totalPages" (click)="changePage(page + 1)">&rsaquo;</button>
+                                    <button class="flex h-[32px] w-[32px] items-center justify-center rounded-lg border border-gray-scale-200 bg-white text-gray-scale-500 transition-colors hover:border-primary hover:text-primary disabled:cursor-not-allowed disabled:opacity-50 dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-gray-scale-400 dark:hover:border-secondary dark:hover:text-secondary" [disabled]="page === totalPages" (click)="changePage(totalPages)">&raquo;</button>
+                                </div>
+                            }@else { <div></div> }
 
-                            <p-button
-                                icon="material-symbols-rounded delete"
-                                severity="danger"
-                                [rounded]="true"
-                                [text]="true"
-                                (onClick)="onDelete.emit(rowData)"
-                            ></p-button>
-                        </ng-container>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-
-        <ng-template pTemplate="emptymessage">
-            <tr>
-                <td
-                    [attr.colspan]="
-                        columns.length + (showActions ? 1 : 0) + (showSelection ? 1 : 0)
-                    "
-                    class="text-center py-8"
-                >
-                    <div
-                        class="flex flex-col items-center text-secondary-500 dark:text-secondary-400"
-                    >
-                        <span class="material-symbols-rounded text-5xl mb-2 opacity-50">inbox</span>
-                        <p>No se encontraron registros.</p>
-                    </div>
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
+                            <div class="flex items-center gap-2 text-sm text-gray-scale-600 dark:text-gray-scale-400">
+                                <span>Mostrar</span>
+                                <select
+                                    class="h-[36px] cursor-pointer rounded-lg border-2 border-gray-scale-200 bg-white px-2 py-1 font-bold text-dark-scale transition-colors hover:border-primary focus:border-primary focus:outline-none focus:ring-0 dark:border-dark-scale-600 dark:bg-dark-scale-800 dark:text-white dark:hover:border-secondary dark:focus:border-secondary"
+                                    [value]="rowsPerPage"
+                                    (change)="updateRowsPerPage($any($event.target).value)"
+                                >
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                </select>
+                                <span>registros</span>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
 </div>

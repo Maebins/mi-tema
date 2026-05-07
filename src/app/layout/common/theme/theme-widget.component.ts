@@ -9,6 +9,5 @@ import { ThemeService } from '../../../core/theme/theme.service';
     templateUrl: './theme-widget.component.html',
 })
 export class ThemeWidgetComponent {
-    // Inyectamos tu servicio de temas directamente aquí
     public themeService = inject(ThemeService);
 }

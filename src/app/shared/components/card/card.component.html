@@ -1,0 +1,26 @@
+<div 
+    class="relative flex p-4 rounded-2xl border transition-all duration-300 hover:-translate-y-1"
+    [ngClass]="[getCardBgClass(), horizontal ? 'flex-row items-center gap-4' : 'flex-col']"
+>
+    <div class="absolute inset-0 rounded-2xl border border-white/5 pointer-events-none dark:block hidden"></div>
+
+    <div 
+        class="flex items-center justify-center rounded-xl shrink-0 shadow-2xl"
+        [ngClass]="[getIconContainerClass(), horizontal ? 'h-14 w-14' : 'h-12 w-12 mb-4']"
+    >
+        <i [class]="'pi ' + icon + ' text-2xl'"></i>
+    </div>
+
+    <div class="flex flex-col flex-grow min-w-0">
+        <span class="text-[10px] font-black uppercase tracking-[0.15em] text-gray-scale-500 dark:text-gray-scale-400">
+            {{ title }}
+        </span>
+        
+        <div class="flex items-baseline gap-2">
+            <h2 class="text-3xl font-bold tracking-tight text-dark-scale dark:text-white-scale truncate">
+                {{ subtitle }}
+            </h2>
+            <ng-content></ng-content>
+        </div>
+    </div>
+</div>

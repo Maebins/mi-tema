@@ -1,0 +1,45 @@
+<div class="flex w-full items-center justify-between">
+    @for (step of steps; track step.label; let i = $index; let isLast = $last) {
+        
+        <div 
+            class="flex items-center" 
+            [ngClass]="{'cursor-pointer hover:opacity-80': clickable && currentStep > (i + 1)}"
+            (click)="onStepClick(i)"
+        >
+            <div 
+                class="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold transition-colors duration-300"
+                [ngClass]="{
+                    'bg-primary text-white dark:bg-secondary dark:text-dark-scale': currentStep >= (i + 1),
+                    'border-2 border-gray-scale-300 text-gray-scale-400 dark:border-dark-scale-600 dark:text-gray-scale-500': currentStep < (i + 1)
+                }"
+            >
+                @if (currentStep > (i + 1)) {
+                    <i class="pi pi-check text-[14px] font-bold"></i>
+                } @else {
+                    <span>{{ i + 1 }}</span>
+                }
+            </div>
+
+            <span 
+                class="ml-3 hidden whitespace-nowrap text-sm font-semibold transition-colors duration-300 sm:block"
+                [ngClass]="{
+                    'text-dark-scale dark:text-white': currentStep > (i + 1),
+                    'text-primary dark:text-secondary': currentStep === (i + 1),
+                    'text-gray-scale-400 dark:text-gray-scale-500': currentStep < (i + 1)
+                }"
+            >
+                {{ step.label }}
+            </span>
+        </div>
+
+        @if (!isLast) {
+            <div 
+                class="mx-2 h-[2px] flex-1 transition-colors duration-300 sm:mx-4"
+                [ngClass]="{
+                    'bg-primary dark:bg-secondary': currentStep > (i + 1),
+                    'bg-gray-scale-200 dark:bg-dark-scale-700': currentStep <= (i + 1)
+                }"
+            ></div>
+        }
+    }
+</div>

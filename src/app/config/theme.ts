@@ -4,30 +4,30 @@ import Aura from '@primeng/themes/aura';
 export const MySystemPreset = definePreset(Aura, {
     semantic: {
         primary: {
-            50: '#eff6ff',
-            100: '#dbeafe',
-            200: '#bfdbfe',
-            300: '#93c5fd',
-            400: '#60a5fa',
-            500: '#3b82f6',
-            600: '#2563eb',
-            700: '#1d4ed8',
-            800: '#1e40af',
-            900: '#1e3a8a',
-            950: '#172554',
+            50: '#f5e7e9',
+            100: '#f0dbde',
+            200: '#e1b4bc',
+            300: '#c5808e', 
+            400: '#b2465b', 
+            500: '#9e0c26', 
+            600: '#8e0b22',
+            700: '#77091d',
+            800: '#570717',
+            900: '#470511',
+            950: '#37040d',
         },
         secondary: {
-            50: '#f8fafc',
-            100: '#f1f5f9',
-            200: '#e2e8f0',
-            300: '#cbd5e1',
-            400: '#94a3b8',
-            500: '#64748b',
-            600: '#475569',
-            700: '#334155',
-            800: '#1e293b',
-            900: '#0f172a',
-            950: '#020617',
+            50: '#fbf7eb',
+            100: '#f9f3e1',
+            200: '#f2e6c1',
+            300: '#e7d096',
+            400: '#dec16c', 
+            500: '#d4af37', 
+            600: '#bf9e32',
+            700: '#9f8329',
+            800: '#776921',
+            900: '#5f4f19',
+            950: '#4a3d13'
         },
         // Colores de apoyo (sobrescribir aquí)
         colorScheme: {
@@ -36,7 +36,6 @@ export const MySystemPreset = definePreset(Aura, {
                     0: '#ffffff',
                     50: '{secondary.50}',
                     100: '{secondary.100}',
-                    // ... esto mapea los colores de fondo al modo claro
                 },
             },
             dark: {
@@ -44,7 +43,6 @@ export const MySystemPreset = definePreset(Aura, {
                     0: '#ffffff',
                     50: '{secondary.950}',
                     100: '{secondary.900}',
-                    // ... esto mapea los colores de fondo al modo oscuro
                 },
             },
         },

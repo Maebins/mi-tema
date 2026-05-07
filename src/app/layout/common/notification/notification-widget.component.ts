@@ -9,7 +9,7 @@ import { BadgeModule } from 'primeng/badge';
     templateUrl: './notification-widget.component.html',
 })
 export class NotificationWidgetComponent {
-    unreadCount: number = 3; // Puedes conectar esto a un servicio después
+    unreadCount: number = 3; 
 
     abrirNotificaciones() {
         console.log('Abriendo panel de notificaciones...');

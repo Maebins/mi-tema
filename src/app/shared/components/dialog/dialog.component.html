@@ -1,0 +1,43 @@
+<p-dialog
+    [header]="config.title"
+    [modal]="true"
+    [visible]="visible"
+    (visibleChange)="updateVisibility($event)"
+    [style]="config.styles || { width: '450px' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    appendTo="body" 
+>
+    <div class="flex flex-col gap-4 py-2">
+        @if (config.message) {
+            <p class="text-base text-gray-scale-700 dark:text-gray-scale-300 m-0">
+                {{ config.message }}
+            </p>
+        }
+        
+        <ng-content></ng-content>
+    </div>
+
+    <ng-template pTemplate="footer">
+        <div class="flex justify-end gap-3 pt-4">
+            
+            @if (config.type !== 'alert') {
+                <app-button
+                    [config]="{
+                        label: config.cancelButtonLabel || 'Cancelar', 
+                        type: 'neutral',
+                        ghost: true
+                    }"
+                    (click)="updateVisibility(false)"
+                />
+            }
+
+            <app-button
+                [config]="{
+                    label: config.submitButtonLabel || 'Guardar',
+                    type: config.submitButtonType || (config.type === 'confirm' ? 'danger' : 'primary')
+                }"
+                (click)="save()"
+            />
+        </div>
+    </ng-template>
+</p-dialog>

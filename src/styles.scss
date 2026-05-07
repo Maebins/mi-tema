@@ -6,6 +6,23 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 1. REGISTRO DE FUENTES PERSONALIZADAS */
+@font-face {
+    font-family: 'Red Hat Display';
+    font-weight: 300 900;
+    font-display: swap;
+    font-style: normal;
+    src: url('/fonts/font-custom/RedHatDisplay-VariableFont_wght.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Arima';
+    font-weight: 100 700;
+    font-display: swap;
+    font-style: normal;
+    src: url('/fonts/font-custom/Arima-VariableFont_wght.woff2') format('woff2');
+}
+
 @layer tailwind-base, primeng, tailwind-utilities;
 
 @layer tailwind-base {
@@ -20,7 +37,8 @@
 /* Body */
 @layer base {
     :root {
-        --font-family-base: 'Inter', sans-serif;
+        --font-family-base: 'Red Hat Display', sans-serif;
+        --font-family-serif: 'Arima', serif;
         --font-size-xs: 13px;
         --font-size-sm: 14px;
         --font-size-md: 15px;
@@ -34,10 +52,46 @@
     }
 
     body {
-        @apply m-0 p-0 antialiased text-slate-800 bg-slate-50 text-xs;
+        @apply m-0 p-0 antialiased text-slate-800 dark:text-white bg-slate-50 text-md;
         @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
         font-family: var(--font-family-base);
+
+        --p-select-overlay-background: theme('colors.white-scale.DEFAULT');
+        --p-select-option-color: theme('colors.dark-scale.DEFAULT');
+        
+        /* Al pasar el mouse y elemento seleccionado: Fondo guinda muy clarito */
+        --p-select-option-focus-background: theme('colors.primary.50');
+        --p-select-option-selected-background: theme('colors.primary.50');
+        --p-select-option-selected-color: theme('colors.primary.DEFAULT');
+        
+        /* Multiselects */
+        --p-multiselect-overlay-background: theme('colors.white-scale.DEFAULT');
+        --p-multiselect-option-focus-background: theme('colors.primary.50');
+        --p-multiselect-option-selected-background: theme('colors.primary.50');
+        --p-multiselect-option-selected-color: theme('colors.primary.DEFAULT');
+        --p-multiselect-placeholder-color:  theme('colors.gray-scale.DEFAULT');
+
+        /*Date Picker*/
+
+        --p-datepicker-panel-background: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-header-background: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-week-day-color: theme('colors.gray-scale.700');
+        --p-datepicker-date-color: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-select-month-color: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-select-year-color: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-date-hover-background: theme('colors.primary.50');
+        --p-datepicker-date-hover-color: theme('colors.primary.DEFAULT');
+        --p-datepicker-date-selected-background: theme('colors.primary.DEFAULT');
+        --p-datepicker-date-selected-color: theme('colors.white-scale.DEFAULT');
+
+        /*Check Box */
+        --p-checkbox-checked-background: theme('colors.primary.DEFAULT'); 
+        --p-checkbox-checked-border-color: theme('colors.primary.DEFAULT');
+        --p-checkbox-checked-hover-background: theme('colors.primary.600');
+        --p-checkbox-checked-hover-border-color: theme('colors.primary.600');
+        --p-checkbox-icon-color: theme('colors.white-scale.DEFAULT'); 
     }
+
 }
 
 /* Ajuste Google Icons */
@@ -73,7 +127,7 @@
    FORM CONTROLS STYLES (PRIMENG + TAILWIND)
    ========================================================================== */
 
-/* 1. Reset para que los inputs ocupen el 100% de su contenedor */
+/* Reset para que los inputs ocupen el 100% de su contenedor */
 .p-inputtext,
 .p-dropdown,
 .p-calendar,
@@ -81,14 +135,13 @@
     @apply w-full;
 }
 
-/* 2. ESTADOS DE ERROR AUTOMÁTICOS */
-/* Angular le agrega las clases .ng-invalid y .ng-touched a los inputs que fallan */
+/*ESTADOS DE ERROR AUTOMÁTICOS */
 .ng-invalid.ng-touched {
     /* Input Normal, Password, Textarea */
     &.p-inputtext,
     .p-inputtext,
     .p-password input {
-        @apply border-danger-500 hover:border-danger-400 focus:border-danger-500 focus:ring-1 focus:ring-danger-500 !important;
+        @apply border-danger-600 hover:border-danger-600 focus:border-danger-600 focus:ring-1 focus:ring-danger-600 !important;
     }
 
     /* Select (Dropdown) */
@@ -97,13 +150,13 @@
     }
 }
 
-/* 3. Transiciones suaves para todos los bordes */
+/* Transiciones suaves para todos los bordes */
 .p-inputtext,
 .p-dropdown {
     @apply transition-colors duration-200;
 }
 
-/* 4. Forzar tamaño de fuente text-xs (13px) en el Datepicker (Input y Panel) */
+/* Tamaño de fuente text-xs (13px) en el Datepicker (Input y Panel) */
 p-datepicker .p-inputtext {
     @apply text-xs;
 }
@@ -113,7 +166,7 @@ p-datepicker .p-inputtext {
     .p-datepicker-title,
     .p-datepicker-calendar th,
     .p-datepicker-calendar td > span {
-        @apply text-xs !important;
+        @apply  text-sm !important;
     }
 }
 
@@ -128,10 +181,10 @@ p-datepicker .p-inputtext {
 /* 6. Asegurar que los Botones hereden text-xs (13px) */
 .p-button,
 .p-button .p-button-label {
-    @apply text-xs !important;
+    @apply font-bold text-xs !important;
 }
 
-/* 7. Forzar tamaño de fuente text-xs para controles de formulario de PrimeNG */
+/* Fuente text-xs para controles de formulario de PrimeNG */
 .p-inputtext,
 .p-textarea,
 .p-dropdown .p-dropdown-label,
@@ -143,8 +196,305 @@ p-datepicker .p-inputtext {
 .p-treeselect .p-treeselect-label,
 .p-cascadeselect .p-cascadeselect-label,
 .p-listbox .p-listbox-item,
+.p-tag,
 .p-chips .p-chips-token,
 .p-chips .p-chips-input-token input {
-    @apply text-xs !important;
+    @apply text-sm !important;
 }
+
+
+
+.p-inputtext {
+    --p-inputtext-background: theme('colors.cream.200');
+    --p-inputtext-color: theme('colors.dark-scale.DEFAULT'); 
+    
+    --p-inputtext-border-color: theme('colors.gray-scale.200'); 
+    --p-inputtext-placeholder-color: theme('colors.gray-scale.DEFAULT'); 
+    
+    --p-inputtext-hover-border-color: theme('colors.gray-scale.500');
+
+    --p-inputtext-focus-border-color: theme('colors.primary.DEFAULT');
+    
+    --p-inputtext-invalid-border-color: theme('colors.danger.DEFAULT');
+    --p-inputtext-invalid-placeholder-color: theme('colors.danger.DEFAULT');
+}
+
+//Estilos para TextArea
+.p-textarea {
+    --p-textarea-background: theme('colors.cream.200');
+    --p-textarea-border-color:  theme('colors.gray-scale.200'); 
+    --p-textarea-border-radius: 8px;
+    --p-textarea-placeholder-color: theme('colors.gray-scale.DEFAULT'); 
+    --p-textarea-color: theme('colors.dark-scale.DEFAULT'); 
+    --p-textarea-hover-border-color: theme('colors.gray-scale.500');
+    --p-textarea-focus-border-color: theme('colors.primary.DEFAULT');
+}
+.p-select {
+    height: 36px;
+    --p-select-background: theme('colors.cream.200');
+    --p-select-border-color:  theme('colors.gray-scale.200'); 
+    --p-select-border-radius: 8px;
+    --p-select-placeholder-color: theme('colors.gray-scale.DEFAULT'); 
+    --p-select-color: theme('colors.dark-scale.DEFAULT'); 
+    --p-select-hover-border-color: theme('colors.gray-scale.500');
+    --p-select-focus-border-color: theme('colors.primary.DEFAULT');
+    --p-select-filled-background: transparent;
+    .p-select-label {
+        font-size: var(--font-size-sm) !important;
+    }
+}
+
+.p-multiselect {
+    /* Multiselect*/
+    --p-multiselect-background: theme('colors.cream.200');
+    --p-multiselect-border-color:  theme('colors.gray-scale.200'); 
+    --p-multiselect-hover-border-color: theme('colors.gray-scale.500');
+    --p-multiselect-focus-border-color: theme('colors.primary.DEFAULT');
+    --p-multiselect-color: theme('colors.dark-scale.DEFAULT'); 
+}
+
+//slider component
+
+.p-slider {
+    height: 4px; /* Línea delgada y elegante */
+    background-color: #e2e8f0; /* Fondo gris claro */
+    border: none;
+
+    .p-slider-range {
+        background-color: var(--primary, #9a1230);
+        transition: background-color 0.3s;
+    }
+
+    .p-slider-handle {
+        width: 16px;  /* ¡Bolita más pequeña! */
+        height: 16px; /* ¡Bolita más pequeña! */
+        background-color: #ffffff; /* Centro hueco/blanco */
+        border: 2px solid var(--primary, #9a1230); /* Borde de color */
+        border-radius: 50%;
+        margin-top: -6px; /* Centrado vertical perfecto */
+        transition: transform 0.2s;
+
+        &:hover {
+            transform: scale(1.15); /* Crece un poquito al pasar el mouse */
+        }
+        &:focus {
+            box-shadow: 0 0 0 4px rgba(154, 18, 48, 0.15);
+        }
+    }
+}
+
+/* Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+    height: 8px; 
+    width: 8px;  
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: #f8fafc; 
+    border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background-color: var(--primary, #9a1230); 
+    border-radius: 8px;
+}
+
+/*MODAL DE RECORTES
+.custom-dialog-container {
+    
+    .mat-mdc-dialog-container {
+        --mdc-dialog-container-color: transparent !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+
+    .mdc-dialog__surface,
+    .mat-mdc-dialog-surface {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+    }
+
+    image-cropper,
+    image-cropper > div,
+    .ngx-ic-source-image {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+}*/
+
+/* Aplicado a la clase custom-dialog-container que definiste al abrir el modal */
+.custom-dialog-container {
+    
+    /* 1. Atacamos directamente al panel flotante de Material */
+    .mat-mdc-dialog-container,
+    .mdc-dialog__surface,
+    .mat-mdc-dialog-surface {
+        background: transparent !important;
+        background-color: transparent !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+        border-radius: 1rem !important; /* Esquinas redondeadas */
+    }
+
+    /* 2. Limpiamos cualquier sombra o borde nativo remanente */
+    .mat-mdc-dialog-container .mdc-dialog__surface {
+        box-shadow: none !important;
+        background: transparent !important;
+    }
+
+    /* 3. Volvemos transparente el fondo de la librería del cropper */
+    image-cropper,
+    .ngx-ic-source-image,
+    .ngx-ic-container {
+        background: transparent !important;
+        background-color: transparent !important;
+    }
+}
+
+/*Modo oscuro*/
+.dark {
+    .p-inputtext {
+        --p-inputtext-background: theme('colors.dark-scale.800');
+        --p-inputtext-color: theme('colors.white-scale.DEFAULT'); 
+        
+        --p-inputtext-border-color: theme('colors.gray-scale.700'); 
+        --p-inputtext-placeholder-color: theme('colors.gray-scale.200'); 
+
+        --p-inputtext-hover-border-color: theme('colors.gray-scale.500'); 
+
+        --p-inputtext-focus-border-color: theme('colors.secondary.DEFAULT'); 
+        
+        --p-inputtext-invalid-border-color: theme('colors.danger.400');
+    }
+
+    .p-textarea {
+        --p-textarea-background: theme('colors.dark-scale.800');
+        --p-textarea-border-color: theme('colors.gray-scale.700');  
+        --p-textarea-placeholder-color: theme('colors.gray-scale.200');  
+        --p-textarea-color: theme('colors.white-scale.DEFAULT'); 
+        --p-textarea-hover-border-color: theme('colors.gray-scale.500');
+        --p-textarea-focus-border-color: theme('colors.secondary.DEFAULT'); 
+    }
+    .p-select {
+        --p-select-background: theme('colors.dark-scale.800');
+        --p-select-border-color: theme('colors.gray-scale.700');  
+        --p-select-placeholder-color: theme('colors.gray-scale.200');  
+        --p-select-color: theme('colors.white-scale.DEFAULT'); 
+        --p-select-hover-border-color: theme('colors.gray-scale.500');
+        --p-select-focus-border-color:theme('colors.secondary.DEFAULT'); 
+        --p-select-filled-background: transparent;
+    }
+
+    .p-multiselect {
+        /* Multiselect*/
+        --p-multiselect-background: theme('colors.dark-scale.800');
+        --p-multiselect-border-color: theme('colors.gray-scale.700');  
+        --p-multiselect-hover-border-color: theme('colors.gray-scale.500');
+        --p-multiselect-focus-border-color: theme('colors.secondary.DEFAULT'); 
+        --p-multiselect-color: theme('colors.white-scale.DEFAULT'); 
+    }
+
+    .p-slider {
+        background-color: #334155; 
+
+        .p-slider-range {
+            background-color: var(--secondary, #d4af37); 
+        }
+
+        .p-slider-handle {
+            background-color: #1a1a1a; 
+            border-color: var(--secondary, #d4af37); 
+
+            &:focus {
+                box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.2);
+            }
+        }
+    }
+
+    body {
+        
+        /* SELECT */
+        --p-select-overlay-background: theme('colors.dark-scale.DEFAULT'); 
+        --p-select-option-color: theme('colors.white-scale.DEFAULT'); 
+        
+        --p-select-option-focus-background: theme('colors.gray-scale.800'); 
+        --p-select-option-focus-color: theme('colors.white-scale.DEFAULT');
+        
+        --p-select-option-selected-background: theme('colors.secondary.900'); 
+        --p-select-option-selected-color: theme('colors.secondary.DEFAULT');
+        
+        --p-select-option-selected-focus-background: theme('colors.secondary.800');
+        --p-select-option-selected-focus-color: theme('colors.secondary.100');
+
+        /* MULTISELECT */
+        --p-multiselect-overlay-background: theme('colors.dark-scale.DEFAULT');
+        --p-multiselect-option-color: theme('colors.white-scale.DEFAULT');
+        
+        --p-multiselect-option-focus-background: theme('colors.gray-scale.800');
+        --p-multiselect-option-focus-color: theme('colors.white-scale.DEFAULT');
+        
+        --p-multiselect-option-selected-background: theme('colors.secondary.900');
+        --p-multiselect-option-selected-color: theme('colors.secondary.DEFAULT');
+        
+        --p-multiselect-option-selected-focus-background: theme('colors.secondary.800');
+        --p-multiselect-option-selected-focus-color: theme('colors.secondary.100');
+        
+        --p-multiselect-placeholder-color: theme('colors.gray-scale.200');
+
+        /* DATEPICKER */
+        --p-datepicker-panel-background: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-header-background: theme('colors.dark-scale.DEFAULT');
+        
+        --p-datepicker-week-day-color: theme('colors.gray-scale.200'); 
+        --p-datepicker-date-color: theme('colors.white-scale.DEFAULT');
+        
+        --p-datepicker-select-month-color: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-select-year-color: theme('colors.white-scale.DEFAULT');
+
+        --p-datepicker-date-selected-background: theme('colors.secondary.DEFAULT');
+        --p-datepicker-date-selected-color: theme('colors.dark-scale.DEFAULT');
+
+        /* DATEPICKER */
+        --p-datepicker-panel-background: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-header-background: theme('colors.dark-scale.DEFAULT');
+        --p-datepicker-week-day-color: theme('colors.gray-scale.200'); 
+        --p-datepicker-date-color: theme('colors.white-scale.DEFAULT'); 
+        --p-datepicker-select-month-color: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-select-year-color: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-date-hover-background: theme('colors.gray-scale.800');
+        --p-datepicker-date-hover-color: theme('colors.white-scale.DEFAULT');
+        --p-datepicker-date-selected-background: theme('colors.secondary.DEFAULT');
+        --p-datepicker-date-selected-color: theme('colors.dark-scale.DEFAULT');
+
+        /*Checkbox*/
+
+        --p-checkbox-background: theme('colors.dark-scale.DEFAULT');
+        --p-checkbox-border-color: theme('colors.gray-scale.500');
+
+        --p-checkbox-hover-border-color: theme('colors.gray-scale.500');
+        --p-checkbox-checked-background: theme('colors.secondary.DEFAULT');
+        --p-checkbox-checked-border-color: theme('colors.secondary.DEFAULT');
+
+        --p-checkbox-checked-hover-background: theme('colors.secondary.400');
+        --p-checkbox-checked-hover-border-color: theme('colors.secondary.400');
+        --p-checkbox-icon-color: theme('colors.dark-scale.DEFAULT');
+
+       
+    }
+
+    /* Scrolbar table */
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: #0f172a;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background-color: var(--secondary, #d4af37); 
+    }
+}
+
+
+
+
 

@@ -1,0 +1,43 @@
+<div class="flex gap-2" [class]="horizontal ? 'flex-row items-center' : 'flex-col'">
+    @if (label) {
+        <label
+            class="text-base font-medium text-dark-scale dark:text-white"
+            [ngClass]="{
+                'block w-full': !horizontal,
+                'flex items-center gap-1 overflow-hidden': horizontal,
+                'w-40 shrink-0': horizontal && fixedLabel,
+                'w-30 sm:w-auto': horizontal && !fixedLabel
+            }"
+        >
+            <span [ngClass]="{ 'flex-1': horizontal }" [title]="label">
+                {{ label }}
+            </span>
+        </label>
+    }
+
+    <div class="w-full min-w-0 flex-1">
+        <p-datepicker
+            [(ngModel)]="value"
+            (ngModelChange)="onSelect($event)"
+            (onBlur)="onBlur()"
+            [disabled]="isDisabled"
+            [iconDisplay]="'input'"
+            [showIcon]="true"
+            [dateFormat]="'dd/mm/yy'"
+            [placeholder]="placeholder"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            
+            [showTime]="showTime"
+            [timeOnly]="timeOnly"
+            [hourFormat]="hourFormat"
+            [showSeconds]="showSeconds"
+            
+            [ngClass]="{ 'ng-invalid ng-dirty': error }"
+            appendTo="body"
+            class="w-full"
+            styleClass="w-full"
+            [inputStyleClass]="(styleClass || '') + ' w-full'"
+        />
+    </div>
+</div>

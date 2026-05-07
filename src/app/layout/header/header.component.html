@@ -1,37 +1,20 @@
 <header
-    class="h-16 bg-white dark:bg-secondary-900 border-b border-secondary-200 dark:border-secondary-700 flex items-center justify-between px-2 sm:px-4 sticky top-0 z-30 transition-all duration-300"
+    class="h-16 bg-white  dark:bg-dark-scale border-b border-gray-scale-200 dark:border-gray-scale-800 flex items-center justify-between px-2 sm:px-4 sticky top-0 z-30 transition-all duration-300"
 >
     <button
         (click)="toggleSidebar()"
-        class="shrink-0 w-10 h-10 flex items-center justify-center text-secondary-600 dark:text-secondary-300 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors"
+        class="shrink-0 w-10 h-10 flex items-center justify-center text-gray-scale dark:text-gray-scale-200 hover:text-dark-scale dark:hover:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 focus:outline-none focus:ring-2 focus:ring-gray-scale-200 dark:focus:ring-gray-scale-700 rounded-full transition-colors"
     >
         <span class="material-symbols-rounded text-2xl">menu</span>
     </button>
-
-    <div class="flex-1 px-2 sm:px-4">
+    <!--<div class="flex-1 px-2 sm:px-4">
         <app-search-widget></app-search-widget>
-    </div>
+    </div> --> 
 
     <div class="flex items-center gap-1 sm:gap-2 shrink-0">
-        <button
-            class="hidden sm:flex w-10 h-10 items-center justify-center text-secondary-500 dark:text-secondary-400 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors"
-        >
-            <span class="material-symbols-rounded">grid_view</span>
-        </button>
-
+        <app-voice-switch/>
         <app-theme-widget></app-theme-widget>
         <app-notification-widget></app-notification-widget>
-
-        <button
-            class="relative hidden sm:flex w-10 h-10 items-center justify-center text-secondary-500 dark:text-secondary-400 rounded-full hover:bg-secondary-100 dark:hover:bg-secondary-800 transition-colors"
-        >
-            <span class="material-symbols-rounded">shopping_cart</span>
-            <span
-                class="absolute top-0 right-0 h-5 w-5 bg-primary-500 text-white text-[10px] font-bold rounded-full flex items-center justify-center border-2 border-white dark:border-secondary-900"
-                >8</span
-            >
-        </button>
-
         <app-user-widget></app-user-widget>
     </div>
 </header>
