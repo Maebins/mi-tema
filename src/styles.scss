@@ -223,17 +223,16 @@ p-datepicker .p-inputtext {
 .p-textarea {
     --p-textarea-background: theme('colors.cream.200');
     --p-textarea-border-color:  theme('colors.gray-scale.200'); 
-    --p-textarea-border-radius: 8px;
+    //--p-textarea-border-radius: 8px;
     --p-textarea-placeholder-color: theme('colors.gray-scale.DEFAULT'); 
     --p-textarea-color: theme('colors.dark-scale.DEFAULT'); 
     --p-textarea-hover-border-color: theme('colors.gray-scale.500');
     --p-textarea-focus-border-color: theme('colors.primary.DEFAULT');
 }
 .p-select {
-    height: 36px;
     --p-select-background: theme('colors.cream.200');
     --p-select-border-color:  theme('colors.gray-scale.200'); 
-    --p-select-border-radius: 8px;
+    //--p-select-border-radius: 8px;
     --p-select-placeholder-color: theme('colors.gray-scale.DEFAULT'); 
     --p-select-color: theme('colors.dark-scale.DEFAULT'); 
     --p-select-hover-border-color: theme('colors.gray-scale.500');
@@ -296,33 +295,6 @@ p-datepicker .p-inputtext {
     background-color: var(--primary, #9a1230); 
     border-radius: 8px;
 }
-
-/*MODAL DE RECORTES
-.custom-dialog-container {
-    
-    .mat-mdc-dialog-container {
-        --mdc-dialog-container-color: transparent !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-    }
-
-    .mdc-dialog__surface,
-    .mat-mdc-dialog-surface {
-        background: transparent !important;
-        background-color: transparent !important;
-        box-shadow: none !important;
-        border: none !important;
-        padding: 0 !important;
-    }
-
-    image-cropper,
-    image-cropper > div,
-    .ngx-ic-source-image {
-        background: transparent !important;
-        background-color: transparent !important;
-    }
-}*/
 
 /* Aplicado a la clase custom-dialog-container que definiste al abrir el modal */
 .custom-dialog-container {

@@ -17,30 +17,25 @@ export class ThemeService {
             }
         });
 
-        // Inicializar el tema actual
         this.applyTheme(this.themeMode());
     }
 
-    // Método para cambiar el tema
     setTheme(mode: ThemeMode) {
         this.themeMode.set(mode);
         localStorage.setItem('app-theme', mode);
         this.applyTheme(mode);
     }
 
-    // Método rápido para el botón del Header (Alterna entre Dark y Light)
     toggleTheme() {
         const current = this.isDarkMode() ? 'light' : 'dark';
         this.setTheme(current);
     }
 
-    // Lógica interna para aplicar las clases al HTML
     private applyTheme(mode: ThemeMode) {
         const htmlElement = document.documentElement;
         let isDark = false;
 
         if (mode === 'system') {
-            // Verifica si el Windows/Mac del usuario está en modo oscuro
             isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         } else {
             isDark = mode === 'dark';
@@ -48,7 +43,6 @@ export class ThemeService {
 
         this.isDarkMode.set(isDark);
 
-        // Agrega o quita la clase '.dark' que usan Tailwind y PrimeNG
         if (isDark) {
             htmlElement.classList.add('dark');
         } else {
@@ -58,6 +52,6 @@ export class ThemeService {
 
     private getStoredTheme(): ThemeMode {
         const stored = localStorage.getItem('app-theme') as ThemeMode;
-        return stored ? stored : 'system'; // 'system' por defecto si es la primera vez
+        return stored ? stored : 'system'; 
     }
 }

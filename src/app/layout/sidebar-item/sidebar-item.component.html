@@ -1,103 +1,88 @@
-<div
-    *ngIf="item.title"
-    class="px-4 py-2 text-xs font-extrabold text-primary-800 dark:text-secondary-400 uppercase tracking-wider group-hover:opacity-100 transition-opacity duration-200"
-    [ngClass]="{ 'md:opacity-0': layoutService.isMiniMode() }"
->
-    {{ item.label }}
-</div>
+@switch (item.type) {
 
-<div
-    *ngIf="item.separator"
-    class="border-t border-gray-scale-200 dark:border-gray-scale-800 my-2"
-></div>
-
-<ng-container *ngIf="!item.title && !item.separator">
-    <a
-        *ngIf="!item.children; else parentItem"
-        [routerLink]="item.routerLink"
-        routerLinkActive="bg-primary-50 text-primary-800 font-bold dark:bg-gray-scale-800 dark:text-secondary-400"
-        class="flex items-center px-4 py-2.5 mx-2 rounded-lg text-dark-scale font-bold dark:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 hover:text-primary-600 dark:hover:text-secondary-300 transition-colors duration-150 cursor-pointer group"
-        (click)="layoutService.closeMobileSidebar()"
-    >
-        <span
-            *ngIf="item.icon"
-            class="material-symbols-rounded text-2xl"
-            [ngClass]="{
-                'mr-3': !layoutService.isMiniMode(),
-                'group-hover:mr-3 transition-all duration-200': layoutService.isMiniMode(),
-            }"
-        >
-            {{ item.icon }}
-        </span>
-
-        <span
-            class="flex-1 truncate transition-opacity duration-200"
-            [ngClass]="{
+    @case ('group') {
+        <div 
+            class="px-4 py-2 mt-4 text-xs font-extrabold text-primary-800 dark:text-secondary-400 uppercase tracking-wider transition-opacity duration-200"
+            [ngClass]="{ 
                 'md:opacity-0': layoutService.isMiniMode(),
-                'group-hover:opacity-100': layoutService.isMiniMode(),
+                'group-hover:opacity-100': layoutService.isMiniMode() 
             }"
         >
             {{ item.label }}
-        </span>
-    </a>
+        </div>
+        
+        @if (item.children) {
+            @for (child of item.children; track child.id || child.label) {
+                <app-sidebar-item [item]="child" [level]="level"></app-sidebar-item>
+            }
+        }
+    }
 
-    <ng-template #parentItem>
-        <div class="mx-2">
-            <!-- El botón principal usa ngClass para activarse con los colores si está expandido -->
-            <button
-                (click)="item.expanded = !item.expanded"
-                class="w-full flex items-center px-4 py-2.5 rounded-lg transition-colors duration-150 group"
-                [ngClass]="{
-                    'bg-primary-50 text-primary-800 font-bold dark:bg-gray-scale-800 dark:text-secondary-400': item.expanded,
-                    'text-dark-scale font-medium dark:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 hover:text-primary-600 dark:hover:text-secondary-300': !item.expanded
-                }"
+    @case ('basic') {
+        <a 
+            [routerLink]="item.routerLink"
+            routerLinkActive="bg-primary-50 text-primary-800 font-bold dark:bg-gray-scale-800 dark:text-secondary-400"
+            class="flex items-center pr-4 py-2.5 mx-2 mb-1 rounded-lg text-dark-scale font-medium dark:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 hover:text-primary-600 dark:hover:text-secondary-300 transition-colors duration-150 cursor-pointer group"
+            [style.paddingLeft]="paddingLeft"
+            (click)="layoutService.closeMobileSidebar()"
+        >
+            <span 
+                *ngIf="item.icon" 
+                class="material-symbols-rounded text-2xl"
+                [ngClass]="{'mr-3': !layoutService.isMiniMode(), 'group-hover:mr-3 transition-all duration-200': layoutService.isMiniMode()}"
             >
-                <span
-                    *ngIf="item.icon"
+                {{ item.icon }}
+            </span>
+            <span 
+                class="flex-1 truncate transition-opacity duration-200"
+                [ngClass]="{'md:opacity-0': layoutService.isMiniMode(), 'group-hover:opacity-100': layoutService.isMiniMode()}"
+            >
+                {{ item.label }}
+            </span>
+        </a>
+    }
+
+    @case ('collapsable') {
+        <div class="flex flex-col">
+            <button 
+                (click)="item.expanded = !item.expanded"
+                class="flex items-center pr-4 py-2.5 mx-2 mb-1 rounded-lg text-dark-scale font-medium dark:text-white-scale hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 hover:text-primary-600 dark:hover:text-secondary-300 transition-colors duration-150 group"
+                [style.paddingLeft]="paddingLeft"
+            >
+                <span 
+                    *ngIf="item.icon" 
                     class="material-symbols-rounded text-2xl"
-                    [ngClass]="{
-                        'mr-3': !layoutService.isMiniMode(),
-                        'group-hover:mr-3 transition-all duration-200': layoutService.isMiniMode(),
-                    }"
+                    [ngClass]="{'mr-3': !layoutService.isMiniMode(), 'group-hover:mr-3 transition-all duration-200': layoutService.isMiniMode()}"
                 >
                     {{ item.icon }}
                 </span>
-
-                <span
+                <span 
                     class="flex-1 text-left truncate transition-opacity duration-200"
-                    [ngClass]="{
-                        'md:opacity-0': layoutService.isMiniMode(),
-                        'group-hover:opacity-100': layoutService.isMiniMode(),
-                    }"
+                    [ngClass]="{'md:opacity-0': layoutService.isMiniMode(), 'group-hover:opacity-100': layoutService.isMiniMode()}"
                 >
                     {{ item.label }}
                 </span>
-
-                <span
+                <span 
                     class="material-symbols-rounded text-xl transition-transform duration-200"
-                    [ngClass]="{
-                        'rotate-180 text-primary-600 dark:text-secondary-400': item.expanded,
-                        'md:opacity-0': layoutService.isMiniMode(),
-                        'group-hover:opacity-100': layoutService.isMiniMode(),
-                    }"
+                    [ngClass]="{'rotate-180': item.expanded, 'md:opacity-0': layoutService.isMiniMode(), 'group-hover:opacity-100': layoutService.isMiniMode()}"
                 >
                     expand_more
                 </span>
             </button>
 
-            <div
-                *ngIf="item.expanded"
-                class="pl-4 mt-1 space-y-1 transition-all duration-200 overflow-hidden"
-                [ngClass]="{
-                    'md:max-h-0': layoutService.isMiniMode(),
-                    'group-hover:max-h-screen': layoutService.isMiniMode(),
-                }"
+            <div 
+                *ngIf="item.expanded && item.children"
+                class="flex flex-col transition-all duration-200 overflow-hidden"
+                [ngClass]="{'md:max-h-0': layoutService.isMiniMode(), 'group-hover:max-h-screen': layoutService.isMiniMode()}"
             >
-                <app-sidebar-item
-                    *ngFor="let child of item.children"
-                    [item]="child"
-                ></app-sidebar-item>
+                @for (child of item.children; track child.id || child.label) {
+                    <app-sidebar-item [item]="child" [level]="level + 1"></app-sidebar-item>
+                }
             </div>
         </div>
-    </ng-template>
-</ng-container>
+    }
+
+    @case ('divider') {
+        <div class="border-t border-gray-scale-200 dark:border-gray-scale-800 my-2"></div>
+    }
+}

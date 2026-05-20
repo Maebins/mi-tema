@@ -5,7 +5,7 @@
 ></div>
 
 <aside
-    class="fixed top-0 left-0 h-screen bg-white-scale dark:bg-dark-scale border-r border-gray-scale-200 dark:border-gray-scale-800 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
+    class="fixed inset-y-0 left-0 bg-white-scale dark:bg-dark-scale border-r border-gray-scale-200 dark:border-gray-scale-800 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
     [ngClass]="{
         '-translate-x-full': !layoutService.isMobileOpen(),
         'translate-x-0 w-[280px]': layoutService.isMobileOpen(),
@@ -21,6 +21,7 @@
     <div
         class="h-16 flex items-center justify-between px-4 border-b border-gray-scale-200 dark:border-gray-scale-800 flex-shrink-0"
     >
+        <!--  Version con logo
         <div class="flex items-center overflow-hidden">
             <div class="flex h-16 items-center p-16"
                 [ngClass]="{
@@ -34,7 +35,24 @@
                     alt="Logo image"
                 />
             </div>
+        </div> -->
+
+        <!-- Version sin logo -->
+        <div class="flex items-center overflow-hidden">
+            <span class="material-symbols-rounded text-3xl text-primary-500 mr-2 min-w-[32px]"
+                >cruelty_free</span
+            >
+            <span
+                class="text-xl font-bold text-secondary-900 dark:text-white transition-opacity duration-200 whitespace-nowrap"
+                [ngClass]="{
+                    'md:opacity-0': layoutService.isMiniMode(),
+                    'group-hover:opacity-100': layoutService.isMiniMode(),
+                }"
+            >
+                MY THEME
+            </span>
         </div>
+
         <button
             (click)="layoutService.closeMobileSidebar()"
             class="md:hidden w-8 h-8 flex items-center justify-center rounded-full text-gray-scale hover:text-primary-600 dark:text-gray-scale-200 dark:hover:text-secondary-400 transition-colors"
@@ -44,7 +62,9 @@
     </div>
 
     <div class="flex-1 overflow-y-auto overflow-x-hidden pt-4 space-y-1 scrollbar-thin">
-        <app-sidebar-item *ngFor="let item of menuItems" [item]="item"></app-sidebar-item>
+        @for (item of menuItems; track item.id || item.label) {
+            <app-sidebar-item [item]="item"></app-sidebar-item>
+        }
     </div>
 
 </aside>

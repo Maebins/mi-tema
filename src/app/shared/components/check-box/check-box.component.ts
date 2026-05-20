@@ -55,8 +55,8 @@ export class CheckBoxComponent implements ControlValueAccessor {
         }
 
         const checkedClasses: Record<CheckboxVariant, string> = {
-            primary: 'bg-primary border-primary', // Tu Guinda
-            secondary: 'bg-secondary border-secondary', // Tu Dorado
+            primary: 'bg-primary border-primary', 
+            secondary: 'bg-secondary border-secondary', 
             success: 'bg-green-custom border-green-custom',
             error: 'bg-red-custom border-red-custom',
             warning: 'bg-yellow-custom border-yellow-custom',

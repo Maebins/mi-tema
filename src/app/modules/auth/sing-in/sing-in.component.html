@@ -1,0 +1,64 @@
+<div
+    class="min-h-screen bg-secondary-50 dark:bg-dark-scale-800 flex items-center justify-center p-4"
+>
+    <div
+        class="w-full max-w-md bg-white dark:bg-secondary-900 rounded-2xl shadow-xl border border-secondary-200 dark:border-secondary-700 p-8"
+    >
+        <!-- Logo / Header -->
+        <div class="flex flex-col items-center mb-8">
+            <div
+                class="w-16 h-16 rounded-2xl bg-primary-500 flex items-center justify-center mb-4 shadow-lg"
+            >
+                <span class="material-symbols-rounded text-white text-3xl">cruelty_free</span>
+            </div>
+            <h1 class="text-2xl font-bold text-secondary-900 dark:text-white">Bienvenido</h1>
+            <p class="text-sm text-secondary-500 dark:text-secondary-400 mt-1">
+                Inicia sesión para continuar
+            </p>
+        </div>
+
+        <!-- Formulario -->
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="flex flex-col gap-4">
+            <app-form-field
+                formControlName="user"
+                [config] = "{
+                    type: 'text',
+                    label: 'Usuario',
+                    placeholder: 'Ingrese Usuario',
+                    required: true,
+                    inputTooltip: 'Ingresa tu usuario'
+                }"   
+            />
+            <label for="">Contraseña</label>
+            <p-password
+                formControlName="password"
+                placeholder="••••••••"
+                [feedback]="false"
+                [toggleMask]="true"
+                styleClass="w-full"
+                inputStyleClass="w-full text-xs"
+                autocomplete="current-password"
+            ></p-password>
+
+            <div class="flex justify-end -mt-2">
+                <a
+                    href="#"
+                    class="text-xs text-primary-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                >
+                    ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+            <div class="w-full">
+                <app-button
+                    [config]="{ 
+                        label: 'Ingresar', 
+                        type: 'primary',
+                        fullWidth: true
+                    }"
+                    (click)="onSubmit()"
+                ></app-button>
+            </div>
+        </form>
+    </div>
+</div>
+

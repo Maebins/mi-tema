@@ -1,9 +1,11 @@
+export type MenuItemType = 'group' | 'collapsable' | 'basic' | 'divider';
+
 export interface AppMenuItem {
-    label?: string; // Texto visible
-    icon?: string; // Icono (Material Symbol o PrimeIcon)
-    routerLink?: string[]; // Ruta de Angular
-    separator?: boolean; // Si es una línea divisoria
-    title?: boolean; // Si es un título de sección (ej: "UI ELEMENTS")
-    children?: AppMenuItem[]; // Submenús (recursivo)
-    expanded?: boolean; // Estado para abrir/cerrar submenús en desktop
+    id?: string;         
+    label?: string;      
+    type: MenuItemType;  
+    icon?: string;
+    routerLink?: string[];
+    children?: AppMenuItem[];
+    expanded?: boolean; 
 }

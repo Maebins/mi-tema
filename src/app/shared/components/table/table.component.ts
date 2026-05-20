@@ -2,9 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
-
-// Componentes compartidos
-
 import { FormFieldComponent } from '../form-field/form-field.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { TableColumn } from './table.types';

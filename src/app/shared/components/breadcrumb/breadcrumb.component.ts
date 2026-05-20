@@ -21,7 +21,6 @@ export interface BreadcrumbItem {
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BreadcrumbComponent implements OnChanges {
-    //Parametro de entrada recibe lista de items(rutas) enviado desde las paginas
 
     @Input() items: BreadcrumbItem[] = [];
 
@@ -29,10 +28,6 @@ export class BreadcrumbComponent implements OnChanges {
 
     private readonly desktopLimit = 5;
     private readonly mobileLimit = 4;
-
-    /**
-     * Funcion para detectar nuevos elementos en la variable Items
-     */
 
     ngOnChanges(): void {
         this.visibleItems = this.applyTruncation(this.items);

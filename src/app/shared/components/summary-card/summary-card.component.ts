@@ -12,7 +12,6 @@ import { SummaryCardConfig, SummaryVariant } from './summary.type'; // Asegúrat
 export class SummaryCardComponent {
     @Input() config!: SummaryCardConfig;
 
-    // Colores de Acento (Solo texto y bordes, NO fondos enteros)
     get accentClasses() {
         const variant: SummaryVariant = this.config.variant || 'primary';
         

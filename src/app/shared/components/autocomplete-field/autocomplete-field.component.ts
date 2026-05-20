@@ -12,16 +12,9 @@ import { TooltipModule } from 'primeng/tooltip';
     styleUrl: './autocomplete-field.component.scss',
 })
 export class AutocompleteFieldComponent {
-    /**
-     * Formulario padre en el que se integra este campo.
-     * Se espera que sea un FormGroup válido.
-     */
+    
     @Input() parentForm!: FormGroup;
 
-    /**
-     * Configuración del campo de autocompletado.
-     * Define etiqueta, nombre de control y opciones adicionales.
-     */
     @Input() config!: {
         label?: string;
         controlName: string;
@@ -48,31 +41,17 @@ export class AutocompleteFieldComponent {
         tooltipPosition?: 'top' | 'bottom' | 'left' | 'right';
     };
 
-    /**
-     * Lista de sugerencias que se muestran en el autocompletado.
-     */
     @Input() suggestions: any[] = [];
 
-    /**
-     * Método que se ejecuta para completar las sugerencias.
-     * Recibe el evento del componente AutoComplete.
-     */
     @Input() completeMethod!: (event: any) => void;
 
-    /**
-     * Evento que se emite al seleccionar un ítem de la lista.
-     */
     @Output() onSelectItem = new EventEmitter<any>();
     @Output() onDropdownRequest = new EventEmitter<void>();
 
-    // === Getter para acceder al FormControl asociado ===
     get control(): FormControl {
         return this.parentForm.get(this.config.controlName) as FormControl;
     }
 
-    /**
-     * Indica si el control tiene errores y ya fue tocado o modificado.
-     */
     get hasError(): boolean {
         return !!(
             this.control &&
@@ -81,9 +60,6 @@ export class AutocompleteFieldComponent {
         );
     }
 
-    /**
-     * Indica si el error actual corresponde a un campo requerido.
-     */
     get isRequiredError(): boolean {
         return !!(this.control?.hasError('required') && this.hasError);
     }
@@ -102,7 +78,6 @@ export class AutocompleteFieldComponent {
         setTimeout(() => {
             const value = this.control.value;
 
-            // Caso especial: permitir texto manual
             if (this.config.preserveManualOnBlur) {
                 this.control.markAsTouched();
                 return;

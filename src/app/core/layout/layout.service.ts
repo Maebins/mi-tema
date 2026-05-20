@@ -5,31 +5,20 @@ import { AppMenuItem } from '../menu/menu.models';
     providedIn: 'root',
 })
 export class LayoutService {
-    // 1. ESTADOS DEL SIDEBAR (Usando Signals)
-
-    // En desktop, controla si está colapsado (solo iconos) o expandido (iconos + texto)
-    // Basado en tu petición, empezará colapsado (true).
     private _isDesktopCollapsed = signal<boolean>(true);
     isDesktopCollapsed = this._isDesktopCollapsed.asReadonly();
 
-    // En mobile, controla si el "drawer" está abierto o cerrado.
     private _isMobileOpen = signal<boolean>(false);
     isMobileOpen = this._isMobileOpen.asReadonly();
 
-    // Señal computada para saber si estamos en modo "mini" (desktop y colapsado)
-    // Esto nos servirá para la lógica del hover.
     isMiniMode = computed(() => this._isDesktopCollapsed() && window.innerWidth >= 768); // 1024px es 'lg' en Tailwind
 
     constructor() {}
 
-    // 2. ACCIONES
-
-    // Alterna el estado colapsado en desktop (clic en hamburguesa)
     toggleDesktopSidebar() {
         this._isDesktopCollapsed.update((state) => !state);
     }
 
-    // Abre/Cierra el drawer en mobile
     toggleMobileSidebar() {
         this._isMobileOpen.update((state) => !state);
     }
@@ -38,44 +27,58 @@ export class LayoutService {
         this._isMobileOpen.set(false);
     }
 
-    // 3. DATOS DEL MENÚ (Ejemplo basado en tus imágenes)
     getMenu(): AppMenuItem[] {
         return [
-            { label: 'Patrimonio', title: true }, // Título de sección
-            {
-                label: 'Dashboard',
-                icon: 'home', // Usando Material Symbol Rounded
-                routerLink: ['/dashboard'],
+            // --- GRUPO 1 ---
+            { 
+                type: 'group', 
+                label: 'Patrimonio', 
                 children: [
-                    { label: 'Analysis', routerLink: ['/dashboard/analysis'],
+                    {
+                        type: 'collapsable',
+                        label: 'Dashboard',
+                        icon: 'home', 
+                        expanded: true,
                         children: [
-                    { label: 'Analysis', routerLink: ['/dashboard/analysis'],
-                        children: [
-                    { label: 'Analysis', routerLink: ['/dashboard/analysis'] },
-                    { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
-                ],
-                     },
-                    { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
-                ],
-                     },
-                    { label: 'eCommerce', routerLink: ['/dashboard/ecommerce'] },
-                ],
+                            { 
+                                type: 'collapsable', 
+                                label: 'Analysis', 
+                                icon: 'widgets',
+                                children: [
+                                    { type: 'basic', label: 'Analysis 3', routerLink: ['/dashboard/analysis3'] },
+                                    { type: 'basic', label: 'eCommerce 2', routerLink: ['/dashboard/ecommerce'] },
+                                ]
+                            },
+                            { type: 'basic', label: 'eCommerce 1', routerLink: ['/dashboard/ecommerce1'] },
+                        ]
+                    },
+                    { type: 'basic', label: 'Widgets', icon: 'widgets', routerLink: ['/widgets'] },
+                    { type: 'basic', label: 'Apps', icon: 'grid_view', routerLink: ['/apps'] },
+                ]
             },
-            { label: 'Widgets', icon: 'widgets', routerLink: ['/widgets'] },
-            { label: 'Apps', icon: 'grid_view', routerLink: ['/apps'] },
 
-            { separator: true }, // Línea divisoria
-            { label: 'UI ELEMENTS', title: true }, // Título de sección
+            // --- DIVISOR Y GRUPO 2 ---
+            //{ type: 'divider' }, 
+            { 
+                type: 'group', 
+                label: 'UI ELEMENTS', 
+                children: [
+                    { type: 'basic', label: 'Cards', icon: 'credit_card', routerLink: ['/cards'] },
+                    { type: 'basic', label: 'Components', icon: 'featured_play_list', routerLink: ['/components'] },
+                    { type: 'basic', label: 'Icons', icon: 'insert_emoticon', routerLink: ['/icons'] },
+                ]
+            },
 
-            { label: 'Cards', icon: 'credit_card', routerLink: ['/cards'] },
-            { label: 'Components', icon: 'featured_play_list', routerLink: ['/components'] },
-            { label: 'Icons', icon: 'insert_emoticon', routerLink: ['/icons'] },
-
-            { separator: true },
-            { label: 'FORMS & TABLES', title: true },
-
-            { label: 'Forms', icon: 'list_alt', routerLink: ['/forms'] },
-            { label: 'Tables', icon: 'table_chart', routerLink: ['/tables'] },
+            // --- DIVISOR Y GRUPO 3 ---
+            { type: 'divider' },
+            { 
+                type: 'group', 
+                label: 'FORMS & TABLES', 
+                children: [
+                    { type: 'basic', label: 'Forms', icon: 'list_alt', routerLink: ['/forms'] },
+                    { type: 'basic', label: 'Tables', icon: 'table_chart', routerLink: ['/tables'] },
+                ]
+            }
         ];
     }
 }
