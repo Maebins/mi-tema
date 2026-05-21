@@ -2,7 +2,7 @@
     <div class="custom-scrollbar w-full overflow-x-auto">
         <table class="w-full min-w-max text-[13px]">
             <thead>
-                <tr class="h-[52px] border-b border-gray-scale-200 bg-gray-50 text-center font-sans text-xs font-bold uppercase tracking-wider text-gray-scale-500 dark:border-dark-scale-700 dark:bg-dark-scale-800 dark:text-gray-scale-400">
+                <tr class="h-[52px] font-barlow bg-gray-50 dark:bg-gray-scale-900 text-gray-scale-500 dark:text-gray-scale-300 text-xs font-medium border-y border-gray-200 dark:border-gray-scale-800">
                     
                     <th *ngFor="let col of columns" class="px-3 py-2" [ngStyle]="getColumnStyles(col)">
                         {{ col.header }}
@@ -16,7 +16,7 @@
                         {{ statusColumnHeader }}
                     </th>
 
-                    <th *ngIf="actions.length > 0" class="sticky right-0 z-10 w-[140px] min-w-[140px] bg-gray-50 px-3 py-2 shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.05)] dark:bg-dark-scale-800 dark:shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.5)]">
+                    <th *ngIf="actions.length > 0" class="sticky right-0 z-10 w-[140px] min-w-[140px] bg-gray-50 px-3 py-2 shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.05)] dark:bg-gray-scale-900 dark:shadow-[-10px_0_15px_-3px_rgba(0,0,0,0.5)]">
                         {{ actionsHeader }}
                     </th>
                 </tr>
@@ -24,7 +24,7 @@
 
             <tbody>
                 <tr *ngFor="let row of data"
-                    class="group h-[56px] border-b border-gray-scale-100 font-sans text-dark-scale transition-colors duration-150 odd:bg-white even:bg-gray-50 hover:bg-primary/5 dark:border-dark-scale-800 dark:text-white-scale dark:odd:bg-dark-scale-950 dark:even:bg-dark-scale-900 dark:hover:bg-secondary/10"
+                    class="group h-[56px] border-b border-gray-scale-100  text-dark-scale transition-colors duration-150 odd:bg-white even:bg-gray-50 hover:bg-primary/5 dark:border-gray-scale-800 dark:text-white-scale dark:odd:bg-dark-scale-600 dark:even:bg-dark-scale dark:hover:bg-secondary/10"
                 >
                     <td *ngFor="let col of columns" class="px-3 py-2 text-center" [ngStyle]="getColumnStyles(col)" [style.wordBreak]="col.width ? 'break-word' : null">
                         <span *ngIf="col.editable" contenteditable="true" [textContent]="row[col.field]" (blur)="row[col.field] = $any($event.target).innerText" class="block min-h-[28px] w-full cursor-text rounded border border-transparent px-2 py-1 outline-none transition-colors hover:bg-gray-100 focus:border-primary focus:bg-white focus:ring-0 dark:hover:bg-dark-scale-700 dark:focus:border-secondary dark:focus:bg-dark-scale-800"></span>
@@ -70,7 +70,7 @@
             <tfoot>
                 <tr>
                     <td [attr.colspan]="columns.length + (showStatusColumn ? 1 : 0) + (showSelectColumn ? 1 : 0) + (actions.length > 0 ? 1 : 0)" class="h-[60px] p-0 border-t border-gray-scale-200 dark:border-dark-scale-700">
-                        <div class="flex flex-col items-center justify-between gap-4 bg-white px-6 py-3 sm:flex-row dark:bg-dark-scale-900">
+                        <div class="flex flex-col items-center justify-between gap-4 bg-white px-6 py-3 sm:flex-row dark:bg-dark-scale-700">
                             
                             @if(totalPages > 1) {
                                 <div class="flex items-center justify-start gap-1 sm:gap-2">

@@ -41,7 +41,7 @@ export class SignInComponent {
 
         this.isLoading.set(true);
 
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/general/dashboard']);
 
         /**this._authService.signIn(this.loginForm.value).subscribe({
             next: () => {

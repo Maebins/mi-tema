@@ -4,7 +4,7 @@
     [ngClass]="computedClasses"
     [appVoiceGuide]="config.voice || ''"
     [attr.aria-label]="config.label || config.iconName || 'Botón de acción'"
-    class="group flex items-center justify-center font-bold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed outline-none focus:outline-none focus:ring-0"
+    class="h-8 group flex items-center justify-center font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed outline-none focus:outline-none focus:ring-0"
 >
 
     @if (config.loading) {
@@ -16,7 +16,7 @@
     
     @else if (config.icon) {
         <span 
-            class="material-symbols-rounded text-[20px] leading-none flex-shrink-0" 
+            class="material-symbols-rounded !text-[16px] leading-none flex-shrink-0" 
             [ngClass]="{ 'md:mr-2': config.label }"
         >
             {{ config.iconName || 'add' }}

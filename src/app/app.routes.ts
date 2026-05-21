@@ -5,14 +5,14 @@ import { LayoutEmptyComponent } from './layout/layout-empty/layout-empty.compone
 import { AuthGuard } from './core/auth/guards/auth.guard';
 
 export const appRoutes: Route[] = [
-    { path: '', pathMatch: 'full', redirectTo: 'inicio' },
+    { path: '', pathMatch: 'full', redirectTo: '/general/dashboard' },
 
     // Redirect signed-in user to the '/inicio'
  
     {
         path: 'signed-in-redirect',
         pathMatch: 'full',
-        redirectTo: 'inicio',
+        redirectTo: '/general/dashboard',
     },
 
     // Auth routes for guests
@@ -59,19 +59,21 @@ export const appRoutes: Route[] = [
         children: [
             { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
             {
-                path: 'dashboard',
-                loadComponent: () =>
-                    import('../app/modules/dashboard/dashboard.component').then(
-                        (m) => m.DashboardComponent,
-                    ),
+                path: 'general',
+                loadChildren: () => import( '../app/modules/general/general.routes'),
             },
             {
-                path: 'dashboard/ecommerce',
-                loadComponent: () =>
-                    import('../app/modules/dashboard/dashboard.component').then(
-                        (m) => m.DashboardComponent,
-                    ),
-            }
+                path: 'obras',
+                loadChildren: () => import( '../app/modules/obras/obras.routes')
+            },
+            {
+                path: 'maestros',
+                loadChildren: () => import( '../app/modules/maestros/maestros.routes')
+            },
+            {
+                path: 'configuracion',
+                loadChildren: () => import( '../app/modules/configuracion/configuracion.routes')
+            },
         ],
     },
 ];

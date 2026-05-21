@@ -1,0 +1,170 @@
+<div class="space-y-6 animate-fade-in">
+    <!-- Encabezado -->
+    <div class="flex flex-col gap-8 md:flex-row md:justify-between ">
+        <div>
+            <h1 class="font-barlow text-3xl font-extrabold text-dark-scale dark:text-white">Perfiles y permisos</h1>
+            <p class="text-md font-regular text-gray-scale-600 dark:text-gray-scale-300 mt-2">
+                Configura qué puede ver y hacer cada rol dentro de la plataforma.
+            </p>
+        </div>
+        <div class="flex items-end gap-2">
+            <app-button 
+                (click)="abrirModal()"
+                [config]="{ 
+                    label: 'Nueva Perfil', 
+                    icon: true, 
+                    type: 'primary'
+                }"
+            />
+        </div>
+    </div>
+
+    <!-- Lista de perfiles -->
+    <div class="w-full flex flex-col">
+    
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 w-full">
+            
+            @for (perfil of perfiles; track perfil.id) {
+                <div 
+                    (click)="seleccionarPerfil(perfil)"
+                    class="bg-white dark:bg-dark-scale p-5 rounded-xl border-2 transition-all duration-200 cursor-pointer flex flex-col gap-3 relative"
+                    [ngClass]="perfilSeleccionado.id === perfil.id 
+                        ? perfil.borderActivo + ' shadow-md' 
+                        : 'border-gray-scale-100 dark:border-gray-scale-800 hover:border-gray-300 dark:hover:border-gray-500 hover:shadow-sm'"
+                >
+                    <div class="flex justify-between items-start gap-2">
+                        <h3 class="font-bold text-[15px] text-gray-900 dark:text-white leading-tight">
+                            {{ perfil.titulo }}
+                        </h3>
+                        
+                        <span class="shrink-0 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold {{ perfil.badgeClase }}">
+                            <span class="w-1.5 h-1.5 rounded-full {{ perfil.dotClase }}"></span>
+                            {{ perfil.usuarios }} usuarios
+                        </span>
+                    </div>
+                    <p class="text-[13px] text-gray-500 dark:text-gray-400 leading-snug">
+                        {{ perfil.desc }}
+                    </p>
+                </div>
+            }
+
+        </div>
+
+    </div>
+    <!-- Matriz de permisos -->
+    <div class="bg-white dark:bg-dark-scale rounded-xl border border-gray-scale-200 dark:border-gray-scale-800 shadow-sm flex flex-col overflow-hidden">
+        
+        <div class="p-5 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-gray-scale-100 dark:border-dark-scale-800">
+            <div>
+                <h2 class="text-lg font-bold font-barlow text-gray-900 dark:text-white">
+                    Matriz de permisos — 
+                    <span [ngClass]="{
+                        'text-green-500': perfilSeleccionado.color === 'green',
+                        'text-blue-500': perfilSeleccionado.color === 'blue',
+                        'text-[#ff8f00]': perfilSeleccionado.color === 'yellow',
+                        'text-orange-500': perfilSeleccionado.color === 'orange'
+                    }">
+                        {{ perfilSeleccionado.titulo }}
+                    </span>
+                </h2>
+                <p class="text-sm text-gray-400 mt-1">Define las acciones permitidas para este perfil. Cambios se aplican a {{ perfilSeleccionado.usuarios }} usuarios.</p>
+            </div>
+            
+            <app-button 
+                [config]="{ 
+                    label: 'Guardar cambios', 
+                    icon: true, 
+                    iconName: 'check', 
+                    type: 'primary'
+                }"
+            />
+        </div>
+
+        <div class="overflow-x-auto">
+            <table class="w-full text-center whitespace-nowrap text-sm">
+                <thead>
+                    <tr class="bg-gray-50 dark:bg-[#252a30] text-gray-500 font-barlow  dark:text-gray-400 font-bold border-b border-gray-scale-200 dark:border-gray-scale-800">
+                        <th class="py-3 px-6 text-left w-1/5">Módulo</th>
+                        <th class="py-3 px-4 w-1/5">Ver</th>
+                        <th class="py-3 px-4 w-1/5">Crear / Importar</th>
+                        <th class="py-3 px-4 w-1/5">Editar / Aprobar</th>
+                        <th class="py-3 px-4 w-1/5">Eliminar / Cerrar</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-scale-100 dark:divide-gray-scale-800">
+                    
+                    @for (fila of permisosActuales; track fila.modulo) {
+                        <tr class="hover:bg-gray-50/50 dark:hover:bg-dark-scale-800/50 transition-colors">
+                            <td class="py-4 px-6 text-left font-bold text-gray-900 dark:text-white">
+                                {{ fila.modulo }}
+                            </td>
+                            
+                            <td class="py-4 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-scale-700 transition-colors">
+                                @if (fila.ver) {
+                                    <svg class="w-5 h-5 text-green-500 dark:text-green-400 mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                } @else {
+                                    <span class="text-gray-300 dark:text-gray-600">—</span>
+                                }
+                            </td>
+
+                            <td class="py-4 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-scale-700 transition-colors">
+                                @if (fila.crear) {
+                                    <svg class="w-5 h-5 text-green-500 dark:text-green-400 mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                } @else {
+                                    <span class="text-gray-300 dark:text-gray-600">—</span>
+                                }
+                            </td>
+
+                            <td class="py-4 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-scale-700 transition-colors">
+                                @if (fila.editar) {
+                                    <svg class="w-5 h-5 text-green-500 dark:text-green-400 mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                } @else {
+                                    <span class="text-gray-300 dark:text-gray-600">—</span>
+                                }
+                            </td>
+
+                            <td class="py-4 px-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dark-scale-700 transition-colors">
+                                @if (fila.eliminar) {
+                                    <svg class="w-5 h-5 text-green-500 dark:text-green-400 mx-auto" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                } @else {
+                                    <span class="text-gray-300 dark:text-gray-600">—</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<app-dialog 
+    [visible]="modalVisible" 
+    (visibleChange)="modalVisible = $event" 
+    [config]="modalConfig" 
+    (onSave)="guardarPerfil()"
+>
+    <div class="flex flex-col gap-5 mt-2">
+        
+        <app-form-field 
+            [config]="nombreConfig" 
+            [(ngModel)]="form.nombre">
+        </app-form-field>
+
+        <app-form-field 
+            [config]="descConfig" 
+            [(ngModel)]="form.descripcion">
+        </app-form-field>
+
+        <div class="flex flex-col gap-1.5">
+            <app-form-field 
+                [config]="baseConfig" 
+                [(ngModel)]="form.perfilBase"
+                [clear]="true"> </app-form-field>
+            <p class="text-[13px] text-gray-500 dark:text-gray-400">
+                Puedes partir de un perfil existente y ajustar permisos después.
+            </p>
+        </div>
+        
+    </div>
+</app-dialog>

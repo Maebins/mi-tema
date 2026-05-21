@@ -8,9 +8,9 @@
             'md:ml-[72px]': layoutService.isMiniMode(),
         }"
     >
-        <app-header></app-header>
+        <app-header class="sticky top-0 z-30 block"></app-header>
 
-        <main class="flex-1 p-4 md:p-6 lg:p-8 bg-cream dark:bg-dark-scale-800">
+        <main class="flex-1 p-4 md:p-6 lg:p-8 bg-gray-200 dark:bg-dark-scale-800 bg-grid-pattern">
             <router-outlet></router-outlet>
         </main>
     </div>

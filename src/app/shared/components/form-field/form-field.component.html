@@ -5,7 +5,7 @@
     @if (config.label) {
         <label
             [for]="inputId"
-            class="font-regular text-base text-dark-scale dark:text-white"
+            class="font-regular text-xs text-dark-scale dark:text-white"
             [ngClass]="{
                 'block w-full': !horizontal,
                 'flex items-center gap-1 overflow-hidden': horizontal,
@@ -45,7 +45,7 @@
                     [pTooltip]="config.showValueTooltip ? (value || '') : (config.inputTooltip || '')"
                     [tooltipPosition]="config.tooltipPosition || 'top'"
                     [tooltipDisabled]="config.showValueTooltip ? !value : !config.inputTooltip"
-                    class="w-full text-base"
+                    class="w-full text-xs"
                     [ngClass]="{ 'ng-invalid ng-dirty': hasError }"
                 />
             }
@@ -64,7 +64,7 @@
                     [pTooltip]="config.showValueTooltip ? (value || '') : (config.inputTooltip || '')"
                     [tooltipPosition]="config.tooltipPosition || 'top'"
                     [tooltipDisabled]="config.showValueTooltip ? !value : !config.inputTooltip"
-                    class="w-full text-base"
+                    class="w-full text-xs"
                     [ngClass]="{ 'ng-invalid ng-dirty': hasError }"
                 >
                 </textarea>

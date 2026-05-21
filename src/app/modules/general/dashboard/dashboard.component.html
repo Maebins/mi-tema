@@ -1,0 +1,411 @@
+<div class="space-y-6 animate-fade-in">
+    <!-- Encabezado -->
+    <div class="flex flex-col gap-8 md:flex-row md:justify-between ">
+        <div>
+            <h1 class="font-barlow text-3xl font-extrabold text-dark-scale dark:text-white">Dashborad <span class="text-secondary">General</span></h1>
+            <p class="text-md font-regular text-gray-scale-600 dark:text-gray-scale-300 mt-2">Vision global de tus obras — avance físico, ejecución financiera y alertas activas.</p>
+        </div>
+        <div class="flex items-end gap-2">
+            <app-button 
+                [config]="{ 
+                    label: 'Mayo 2026', 
+                    icon: true, 
+                    iconName: 'calendar_today', 
+                    type: 'neutral', 
+                    outlined: true 
+                }"
+            />
+            <app-button 
+                [config]="{ 
+                    label: 'Exportar', 
+                    icon: true, 
+                    iconName: 'download', 
+                    type: 'neutral', 
+                    outlined: true 
+                }"
+            />
+            <app-button
+                (click)="navigate()"
+                [config]="{ 
+                    label: 'Nueva obra', 
+                    icon: true, 
+                    type: 'primary'
+                }"
+            />
+        </div>
+    </div>
+
+    <!-- Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <div class="bg-white dark:bg-dark-scale p-5 rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 border-l-4 border-l-azul-custom dark:border-l-azul-custom">
+            <div class="flex justify-between">
+                <span class="font-semibold text-[12px] tracking-wider uppercase text-gray-400">Obras Activas</span>
+                <div class="bg-azul-custom-200/30 dark:bg-azul-custom-800/30 rounded-lg p-2 text-azul-custom">
+                    <span 
+                        class="material-symbols-rounded !text-[24px] leading-none flex-shrink-0" 
+                    >
+                       home
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-barlow font-extrabold text-3xl">20</h1>
+                <span class="text-[12px] text-azul-custom dark:text-azul-custom-200 font-medium">2 nuevas este mes</span>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-dark-scale p-5 rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 border-l-4 border-l-primary dark:border-l-primary">
+            <div class="flex justify-between">
+                <span class="font-semibold text-[12px] tracking-wider uppercase text-gray-400">Avance físico promedio</span>
+                <div class="bg-warning-300/30 dark:bg-primary-800/30 rounded-lg p-2 text-primary">
+                    <span 
+                        class="material-symbols-rounded !text-[24px] leading-none flex-shrink-0" 
+                    >
+                       circle_circle
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-barlow font-extrabold text-3xl">62.8</h1>
+                <span class="text-[12px] text-warning dark:text-warning-300 font-medium">+3.4% vs. mes anterior</span>
+            </div>
+        </div>
+        <div class="bg-white dark:bg-dark-scale p-5 rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 border-l-4 border-l-success-700 dark:border-l-success">
+            <div class="flex justify-between">
+                <span class="font-semibold text-[12px] tracking-wider uppercase text-gray-400">Avance financiero</span>
+                <div class="bg-success-300/30 dark:bg-success-800/30 rounded-lg p-2 text-success-600 dark:text-success">
+                    <span 
+                        class="material-symbols-rounded !text-[24px] leading-none flex-shrink-0" 
+                    >
+                       credit_card
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-barlow font-extrabold text-3xl">67.1</h1>
+                <span class="text-[12px] text-success-600 dark:text-success-400 font-medium">S/ 4.8M ejecutados</span>
+            </div>    
+        </div>
+        <div class="bg-white dark:bg-dark-scale p-5 rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 border-l-4 border-l-secondary dark:border-l-secondary">
+            <div class="flex justify-between">
+                <span class="font-semibold text-[12px] tracking-wider uppercase text-gray-400">valor en almacenes</span>
+                <div class="bg-secondary-100 dark:bg-secondary-900 rounded-lg p-2 text-secondary ">
+                    <span 
+                        class="material-symbols-rounded !text-[24px] leading-none flex-shrink-0" 
+                    >
+                       wallet
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-barlow font-extrabold text-3xl">487,200</h1>
+                <span class="text-[12px] text-secondary dark:text-secondary-400 font-medium">28 movimientos hoy</span>
+            </div> 
+        </div>
+        <div class="bg-white dark:bg-dark-scale p-5 rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 border-l-4 border-l-danger dark:border-l-danger-500">
+            <div class="flex justify-between">
+                <span class="font-semibold text-[12px] tracking-wider uppercase text-gray-400">alertas abiertas</span>
+                <div class="bg-danger-300/30 dark:bg-danger-800/30 rounded-lg p-2 text-danger ">
+                    <span 
+                        class="material-symbols-rounded !text-[24px] leading-none flex-shrink-0" 
+                    >
+                       notifications
+                    </span>
+                </div>
+            </div>
+            <div>
+                <h1 class="font-barlow font-extrabold text-3xl">7</h1>
+                <span class="text-[12px] text-danger dark:text-danger-400 font-medium">3 críticas requieren atención</span>
+            </div> 
+        </div>
+    </div>
+
+    <!-- Seccion 1 -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <div class="lg:col-span-2 bg-white dark:bg-dark-scale rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-scale-800 flex justify-between items-start">
+                <div>
+                    <h2 class="text-lg font-barlow font-bold text-gray-900 dark:text-white">Curva S consolidada</h2>
+                    <p class="text-gray-400 mt-1">Acumulado planificado vs. real de todas las obras activas</p>
+                </div>
+                <div class="flex gap-4 text-sm font-medium text-gray-600">
+                    <div class="flex items-center gap-2 dark:text-white">
+                        <div class="w-4 h-0.5 bg-gray-500 border border-dashed border-gray-500"></div> Planificado
+                    </div>
+                    <div class="flex items-center gap-2 dark:text-white">
+                        <div class="w-4 h-0.5 bg-orange-500"></div> Real
+                    </div>
+                </div>
+            </div>
+            
+            <div class="p-6 flex-grow relative h-72">
+                <canvas id="lineChart"></canvas>
+            </div>
+
+            <div class="p-6 flex justify-between font-medium text-gray-500">
+                <p>Desviación actual <span class="text-red-500">-4.2 %</span></p>
+                <p>Hito próximo: <span class="text-gray-900 font-bold dark:text-white">15 Jun 2026</span></p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-dark-scale rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 overflow-hidden flex flex-col">
+            <div class="p-6 border-b border-gray-100 dark:border-gray-scale-800">
+                <h2 class="text-lg font-barlow font-bold text-gray-900 dark:text-white">Gasto por categoría</h2>
+                <p class=" text-gray-400 mt-1">Mayo 2026</p>
+            </div>
+
+            <div class="p-6 relative flex justify-center items-center h-64">
+                <canvas id="doughnutChart"></canvas>
+                <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none pb-4">
+                    <span class="text-2xl font-black text-gray-800 dark:text-white">S/ 4.8M</span>
+                    <span class="text-xs text-gray-400">Total ejecutado</span>
+                </div>
+            </div>
+
+            <div class="px-6 pb-6 mt-auto">
+                <ul class="space-y-3 text-sm font-medium text-gray-600">
+                    <li class="flex justify-between items-center">
+                        <div class="flex items-center gap-2 dark:text-white"><div class="w-3 h-3 rounded-sm bg-orange-500"></div> Materiales</div>
+                        <span class="font-bold text-gray-900 dark:text-white">40%</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex items-center gap-2 dark:text-white"><div class="w-3 h-3 rounded-sm bg-yellow-400"></div> Mano de obra</div>
+                        <span class="font-bold text-gray-900 dark:text-white">27%</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex items-center gap-2 dark:text-white"><div class="w-3 h-3 rounded-sm bg-gray-500"></div> Equipos</div>
+                        <span class="font-bold text-gray-900 dark:text-white">20%</span>
+                    </li>
+                    <li class="flex justify-between items-center">
+                        <div class="flex items-center gap-2 dark:text-white"><div class="w-3 h-3 rounded-sm bg-blue-500"></div> Subcontratos</div>
+                        <span class="font-bold text-gray-900 dark:text-white">13%</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- Seccion 2 -->
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-4">
+
+        <div class="lg:col-span-2 bg-white dark:bg-dark-scale rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 overflow-hidden flex flex-col">
+            
+            <div class="p-6 flex justify-between items-start">
+                <div>
+                    <h2 class="text-lg font-barlow font-bold text-gray-900 dark:text-white">Obras en ejecución</h2>
+                    <p class="text-gray-400 mt-1">12 obras · ordenadas por avance físico</p>
+                </div>
+                <a href="#" class="text-sm font-medium text-orange-500 hover:text-orange-600 flex items-center gap-1">
+                    Ver todas
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </a>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="font-barlow bg-gray-50 dark:bg-gray-scale-900 text-gray-scale-500 dark:text-gray-scale-300 text-xs font-semibold border-y border-gray-200 dark:border-gray-scale-800">
+                            <th class="py-3 px-6 whitespace-nowrap">Obra</th>
+                            <th class="py-3 px-4 whitespace-nowrap">Residente</th>
+                            <th class="py-3 px-4 whitespace-nowrap">Avance fis. / fin.</th>
+                            <th class="py-3 px-4 whitespace-nowrap">Estado</th>
+                            <th class="py-3 px-4"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100 dark:divide-gray-scale-800 text-sm">
+                        
+                        <tr class="hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                            <td class="py-4 px-6">
+                                <p class="font-bold text-gray-900 dark:text-white">I.E. 0421 San Marcos</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Contrato 018-2026</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-orange-400 text-white flex items-center justify-center text-xs font-bold">JM</div>
+                                    <span class="text-gray-600 dark:text-white">J. Mendoza</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="w-32 flex flex-col gap-1.5">
+                                    <div class="h-2 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-500 rounded-full" style="width: 82%"></div></div>
+                                    <div class="h-1.5 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-600 rounded-full" style="width: 78%"></div></div>
+                                    <span class="text-xs text-gray-400 mt-0.5">82% / 78%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <app-table-status-chip  label="En plazo" type="success" [useTailwindColors]="true"/>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                            <td class="py-4 px-6">
+                                <p class="font-bold text-gray-900 dark:text-white">Posta Médica Huayllabamba</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Contrato 022-2026</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-yellow-400 text-white flex items-center justify-center text-xs font-bold">CR</div>
+                                    <span class="text-gray-600 dark:text-white">C. Rojas</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="w-32 flex flex-col gap-1.5">
+                                    <div class="h-2 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-500 rounded-full" style="width: 68%"></div></div>
+                                    <div class="h-1.5 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-600 rounded-full" style="width: 74%"></div></div>
+                                    <span class="text-xs text-gray-400 mt-0.5">68% / 74%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <app-table-status-chip  label="Atrasado" type="warning" [useTailwindColors]="true"/>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                            <td class="py-4 px-6">
+                                <p class="font-bold text-gray-900 dark:text-white">Mejoramiento Vial Av. Cultura</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Contrato 011-2026</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-gray-600 text-white flex items-center justify-center text-xs font-bold">LF</div>
+                                    <span class="text-gray-600 dark:text-white">L. Flores</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="w-32 flex flex-col gap-1.5">
+                                    <div class="h-2 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-500 rounded-full" style="width: 54%"></div></div>
+                                    <div class="h-1.5 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-600 rounded-full" style="width: 51%"></div></div>
+                                    <span class="text-xs text-gray-400 mt-0.5">54% / 51%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <app-table-status-chip  label="En plazo" type="success" [useTailwindColors]="true"/>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                            <td class="py-4 px-6">
+                                <p class="font-bold text-gray-900 dark:text-white">Reservorio R-7 Saylla</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Contrato 028-2026</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-orange-400 text-white flex items-center justify-center text-xs font-bold">MQ</div>
+                                    <span class="text-gray-600 dark:text-white">M. Quispe</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="w-32 flex flex-col gap-1.5">
+                                    <div class="h-2 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-500 rounded-full" style="width: 38%"></div></div>
+                                    <div class="h-1.5 w-full bg-gray-200 rounded-full"><div class="h-full bg-orange-600 rounded-full" style="width: 42%"></div></div>
+                                    <span class="text-xs text-gray-400 mt-0.5">38% / 42%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <app-table-status-chip  label="Inicio" type="info" [useTailwindColors]="true"/>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                            </td>
+                        </tr>
+
+                        <tr class="hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                            <td class="py-4 px-6">
+                                <p class="font-bold text-gray-900 dark:text-white">Pavimentación Calle Real</p>
+                                <p class="text-xs text-gray-400 mt-0.5">Contrato 005-2026</p>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-7 h-7 rounded-full bg-yellow-400 text-white flex items-center justify-center text-xs font-bold">AS</div>
+                                    <span class="text-gray-600 dark:text-white">A. Salazar</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4">
+                                <div class="w-32 flex flex-col gap-1.5">
+                                    <div class="h-2 w-full bg-gray-200 rounded-full"><div class="h-full bg-red-500 rounded-full" style="width: 22%"></div></div>
+                                    <div class="h-1.5 w-full bg-gray-200 rounded-full"><div class="h-full bg-red-600 rounded-full" style="width: 18%"></div></div>
+                                    <span class="text-xs text-gray-400 mt-0.5 text-red-500">22% / 18%</span>
+                                </div>
+                            </td>
+                            <td class="py-4 px-4 text-center">
+                                <app-table-status-chip  label="Crítico" type="error" [useTailwindColors]="true"/>
+                            </td>
+                            <td class="py-4 px-4 text-right">
+                                <button class="text-gray-400 hover:text-gray-600"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <div class="bg-white dark:bg-dark-scale rounded-xl shadow-sm border border-gray-scale-100 dark:border-gray-scale-800 overflow-hidden flex flex-col">
+            
+            <div class="p-6 border-b border-gray-100 dark:border-gray-scale-800">
+                <h2 class="text-lg font-bold font-barlow text-gray-900 dark:text-white">Actividad reciente</h2>
+            </div>
+
+            <div class="divide-y divide-gray-100 dark:divide-gray-scale-800 flex-grow">
+                
+                <div class="p-5 flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-green-50 text-green-500 dark:bg-green-800/30 dark:border-green-800/30 flex items-center justify-center shrink-0 border border-green-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">Valorización VAL-018 aprobada</p>
+                        <p class="text-xs text-gray-400 mt-1">I.E. San Marcos · hace 12 min</p>
+                    </div>
+                </div>
+
+                <div class="p-5 flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-yellow-50 text-yellow-600 dark:bg-yellow-800/30 dark:border-yellow-800/30 flex items-center justify-center shrink-0 border border-yellow-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25v10.5A2.25 2.25 0 004.5 19.5z"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">Stock crítico de cemento</p>
+                        <p class="text-xs text-gray-400 mt-1">Pavimentación Calle Real · hace 1 h</p>
+                    </div>
+                </div>
+
+                <div class="p-5 flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-500 dark:bg-blue-800/30 dark:border-blue-800/30 flex items-center justify-center shrink-0 border border-blue-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">Metrados registrados — 6 partidas</p>
+                        <p class="text-xs text-gray-400 mt-1">Posta Huayllabamba · hace 2 h</p>
+                    </div>
+                </div>
+
+                <div class="p-5 flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-orange-50 text-orange-500 dark:bg-orange-800/30 dark:border-orange-800/30 flex items-center justify-center shrink-0 border border-orange-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">Presupuesto importado</p>
+                        <p class="text-xs text-gray-400 mt-1">Reservorio R-7 Saylla · hace 5 h</p>
+                    </div>
+                </div>
+
+                <div class="p-5 flex gap-4 items-start hover:bg-gray-50 dark:hover:bg-dark-scale-700 transition-colors">
+                    <div class="w-10 h-10 rounded-xl bg-red-50 text-red-500 dark:bg-red-800/30 dark:border-red-800/30 flex items-center justify-center shrink-0 border border-red-100">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"></path></svg>
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-gray-900 dark:text-white">Observación del supervisor</p>
+                        <p class="text-xs text-gray-400 mt-1">Av. Cultura · ayer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

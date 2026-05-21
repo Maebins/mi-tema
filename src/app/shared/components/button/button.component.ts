@@ -96,34 +96,37 @@ export class ButtonComponent {
             
             switch (this.config.type) {
                 case 'primary': 
-                    classes += 'border-2 border-primary text-primary hover:bg-primary-50 ' +
+                    classes += 'border border-primary text-primary hover:bg-primary-50 ' +
                                 'dark:border-primary-400 dark:text-primary-400 dark:hover:bg-primary-900/30 ';
                     break;
                 case 'secondary': 
-                    classes += 'border-2 border-brown-custom-600 text-brown-custom-700 hover:bg-brown-custom-50 ' +
+                    classes += 'border border-brown-custom-600 text-brown-custom-700 hover:bg-brown-custom-50 ' +
                                 'dark:border-brown-custom-300 dark:text-brown-custom-200 dark:hover:bg-brown-custom-900/40 ';
                     break;
                 case 'tertiary': 
-                    classes += 'border-2 border-green-custom text-green-custom hover:bg-green-custom-50 ' +
+                    classes += 'border border-green-custom text-green-custom hover:bg-green-custom-50 ' +
                                 'dark:border-green-custom-400 dark:text-green-custom-300 dark:hover:bg-green-custom-900/30 ';
                     break;
                 case 'danger':
+                    classes += 'border border-danger text-danger hover:bg-red-custom-50 ' +
+                                'dark:border-red-custom-500 dark:text-red-custom-400 dark:hover:bg-red-custom-900/30 ';
+                    break;
                 case 'red-custom':
-                    classes += 'border-2 border-error text-error hover:bg-red-custom-50 ' +
+                    classes += 'border border-error text-red-custom-500 hover:bg-red-custom-50 ' +
                                 'dark:border-red-custom-500 dark:text-red-custom-400 dark:hover:bg-red-custom-900/30 ';
                     break;
                 case 'info':
-                    classes += 'border-2 border-azul-custom text-azul-custom hover:bg-azul-custom-50 ' +
+                    classes += 'border border-azul-custom text-azul-custom hover:bg-azul-custom-50 ' +
                                 'dark:border-azul-custom-400 dark:text-azul-custom-400 dark:hover:bg-azul-custom-900/30 ';
                     break;
                 case 'warning':
-                    classes += 'border-2 border-yellow-custom text-yellow-custom-700 hover:bg-yellow-custom-50 ' +
+                    classes += 'border-1/2 border-yellow-custom text-yellow-custom-700 hover:bg-yellow-custom-50 ' +
                                 'dark:border-yellow-custom-400 dark:text-yellow-custom-400 dark:hover:bg-yellow-custom-900/30 ';
                     break;
                 case 'neutral': 
                 default:
-                    classes += 'border-2 border-gray-scale-300 text-gray-scale-700 hover:bg-gray-scale-100 ' +
-                                'dark:border-gray-scale-500 dark:text-gray-scale-100 dark:hover:bg-gray-scale-800 ';
+                    classes += 'border border-gray-scale-300 dark:border-gray-scale-800 text-gray-scale-700 bg-white hover:bg-gray-scale-100' +
+                                'dark:border-gray-scale-800 dark:text-gray-scale-100 dark:bg-dark-scale dark:hover:bg-gray-scale-800 ';
                     break;
             }
 
@@ -135,8 +138,8 @@ export class ButtonComponent {
             
             switch (this.config.type) {
                 case 'primary': 
-                    classes += 'bg-primary text-white-scale hover:bg-primary-600 ' +
-                                'dark:bg-primary-500 dark:text-white-scale dark:hover:bg-primary-400 ';
+                    classes += 'bg-primary text-dark-scale-800 hover:bg-primary-600 ' +
+                                'dark:bg-primary-500 dark:hover:bg-primary-400 ';
                     break;
                 case 'secondary': 
                     classes += 'bg-secondary text-dark-scale hover:bg-secondary-600 ' +

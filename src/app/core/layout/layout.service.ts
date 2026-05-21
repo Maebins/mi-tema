@@ -32,40 +32,23 @@ export class LayoutService {
             // --- GRUPO 1 ---
             { 
                 type: 'group', 
-                label: 'Patrimonio', 
+                label: 'GENERAL', 
                 children: [
-                    {
-                        type: 'collapsable',
-                        label: 'Dashboard',
-                        icon: 'home', 
-                        expanded: true,
-                        children: [
-                            { 
-                                type: 'collapsable', 
-                                label: 'Analysis', 
-                                icon: 'widgets',
-                                children: [
-                                    { type: 'basic', label: 'Analysis 3', routerLink: ['/dashboard/analysis3'] },
-                                    { type: 'basic', label: 'eCommerce 2', routerLink: ['/dashboard/ecommerce'] },
-                                ]
-                            },
-                            { type: 'basic', label: 'eCommerce 1', routerLink: ['/dashboard/ecommerce1'] },
-                        ]
-                    },
-                    { type: 'basic', label: 'Widgets', icon: 'widgets', routerLink: ['/widgets'] },
-                    { type: 'basic', label: 'Apps', icon: 'grid_view', routerLink: ['/apps'] },
+                    { type: 'basic', label: 'Dashboard', icon: 'full_stacked_bar_chart', routerLink: ['/general/dashboard'] }
                 ]
             },
 
             // --- DIVISOR Y GRUPO 2 ---
-            //{ type: 'divider' }, 
+            { type: 'divider' }, 
             { 
                 type: 'group', 
-                label: 'UI ELEMENTS', 
+                label: 'OBRAS', 
                 children: [
-                    { type: 'basic', label: 'Cards', icon: 'credit_card', routerLink: ['/cards'] },
-                    { type: 'basic', label: 'Components', icon: 'featured_play_list', routerLink: ['/components'] },
-                    { type: 'basic', label: 'Icons', icon: 'insert_emoticon', routerLink: ['/icons'] },
+                    { type: 'basic', label: 'Obras', icon: 'home', routerLink: ['/obras/obras'] },
+                    { type: 'basic', label: 'Importar Presupuesto', icon: 'table_chart', routerLink: ['/obras/importar-presupuesto'] },
+                    { type: 'basic', label: 'Metrados Diarios', icon: 'circle_circle', routerLink: ['/obras/metrados-diarios'] },
+                    { type: 'basic', label: 'Valorizaciones', icon: 'docs', routerLink: ['/obras/valorizaciones'] },
+                    { type: 'basic', label: 'Reporte de avance', icon: 'show_chart', routerLink: ['/obras/reporte-de-avances'] },
                 ]
             },
 
@@ -73,10 +56,23 @@ export class LayoutService {
             { type: 'divider' },
             { 
                 type: 'group', 
-                label: 'FORMS & TABLES', 
+                label: ' MAESTROS', 
                 children: [
-                    { type: 'basic', label: 'Forms', icon: 'list_alt', routerLink: ['/forms'] },
-                    { type: 'basic', label: 'Tables', icon: 'table_chart', routerLink: ['/tables'] },
+                    { type: 'basic', label: 'Instituciones', icon: 'location_city', routerLink: ['/maestros/instituciones'] },
+                    { type: 'basic', label: 'Unidades Ejecutoras', icon: 'garage_home', routerLink: ['/maestros/unidades-ejecutoras'] },
+                    { type: 'basic', label: 'Personas', icon: 'group', routerLink: ['/maestros/personas'] },
+                ]
+            },
+
+            // --- DIVISOR Y GRUPO 4 ---
+            { type: 'divider' },
+            { 
+                type: 'group', 
+                label: ' CONFIGURACION', 
+                children: [
+                    { type: 'basic', label: 'Usuarios', icon: 'person', routerLink: ['/configuracion/usuarios'] },
+                    { type: 'basic', label: 'Perfiles', icon: 'lock_person', routerLink: ['/configuracion/perfiles'] },
+                    
                 ]
             }
         ];

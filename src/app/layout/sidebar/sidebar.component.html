@@ -5,7 +5,7 @@
 ></div>
 
 <aside
-    class="fixed inset-y-0 left-0 bg-white-scale dark:bg-dark-scale border-r border-gray-scale-200 dark:border-gray-scale-800 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
+    class="fixed inset-y-0 left-0 bg-white-scale dark:bg-dark-scale border-r-0 border-transparent dark:border-gray-scale-800 flex flex-col z-50 transition-all duration-300 ease-in-out group overflow-x-hidden"
     [ngClass]="{
         '-translate-x-full': !layoutService.isMobileOpen(),
         'translate-x-0 w-[280px]': layoutService.isMobileOpen(),
@@ -19,7 +19,7 @@
     }"
 >
     <div
-        class="h-16 flex items-center justify-between px-4 border-b border-gray-scale-200 dark:border-gray-scale-800 flex-shrink-0"
+        class="h-16 flex items-center justify-between px-4 bg-dark-scale border-b-4 border-primary  flex-shrink-0"
     >
         <!--  Version con logo
         <div class="flex items-center overflow-hidden">
@@ -39,18 +39,21 @@
 
         <!-- Version sin logo -->
         <div class="flex items-center overflow-hidden">
-            <span class="material-symbols-rounded text-3xl text-primary-500 mr-2 min-w-[32px]"
-                >cruelty_free</span
-            >
+            <span class="flex items-center justify-center shrink-0 w-12 h-12 mr-2">
+                <img class="h-full w-full object-contain" src="images/logo/logo.png" alt="Logo" />
+            </span>
+            <div class="flex flex-col">
             <span
-                class="text-xl font-bold text-secondary-900 dark:text-white transition-opacity duration-200 whitespace-nowrap"
+                class="text-2xl font-barlow font-extrabold text-white transition-opacity duration-200 whitespace-nowrap"
                 [ngClass]="{
                     'md:opacity-0': layoutService.isMiniMode(),
                     'group-hover:opacity-100': layoutService.isMiniMode(),
                 }"
             >
-                MY THEME
+                Constru <span class="text-primary"> Track </span>
             </span>
+            <span class="text-secondary text-[11px] font-jetbrains tracking-widest">Control de obra</span>
+        </div>
         </div>
 
         <button
@@ -65,6 +68,20 @@
         @for (item of menuItems; track item.id || item.label) {
             <app-sidebar-item [item]="item"></app-sidebar-item>
         }
+    </div>
+
+    <div class="border-t border-gray-200 dark:border-dark-scale-700 p-4 flex-shrink-0">
+        <div class="flex items-center gap-3 overflow-hidden bg-gray-200 dark:bg-dark-scale-900 rounded-lg">
+            <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
+                <span class="text-primary font-bold">JD</span>
+            </div>
+            
+            <div class="truncate transition-opacity duration-200"
+                 [ngClass]="{'md:opacity-0 group-hover:md:opacity-100': layoutService.isMiniMode()}">
+                <p class="text-sm font-bold text-gray-900 dark:text-white truncate">Juan Pérez</p>
+                <p class="text-[10px] text-gray-500 uppercase tracking-wider">Administrador</p>
+            </div>
+        </div>
     </div>
 
 </aside>

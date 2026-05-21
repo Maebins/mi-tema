@@ -3,31 +3,35 @@ import Aura from '@primeng/themes/aura';
 
 export const MySystemPreset = definePreset(Aura, {
     semantic: {
+        // AMARILLO CASCO (Primario)
         primary: {
-            50: '#f5e7e9',
-            100: '#f0dbde',
-            200: '#e1b4bc',
-            300: '#c5808e', 
-            400: '#b2465b', 
-            500: '#9e0c26', 
-            600: '#8e0b22',
-            700: '#77091d',
-            800: '#570717',
-            900: '#470511',
-            950: '#37040d',
+            50: '#fffdf0',
+            100: '#fff9d6',
+            200: '#fff1a8',
+            300: '#ffe570',
+            400: '#ffd63d',
+            500: '#ffc107',
+            600: '#f5a800', 
+            700: '#cc8400',
+            800: '#a36500',
+            900: '#854f05',
+            950: '#4d2a00',
+            DEFAULT: '#ffc107',
         },
+        // NARANJA BANDA (Secundario / Acento)
         secondary: {
-            50: '#fbf7eb',
-            100: '#f9f3e1',
-            200: '#f2e6c1',
-            300: '#e7d096',
-            400: '#dec16c', 
-            500: '#d4af37', 
-            600: '#bf9e32',
-            700: '#9f8329',
-            800: '#776921',
-            900: '#5f4f19',
-            950: '#4a3d13'
+            50: '#fff8f0',
+            100: '#ffeed6',
+            200: '#ffd7a8',
+            300: '#ffbb70',
+            400: '#fa9e3d',
+            500: '#f7931e',
+            600: '#e07b0e', 
+            700: '#bb5c08',
+            800: '#94460d',
+            900: '#783a0f',
+            950: '#401b05',
+            DEFAULT: '#f7931e',
         },
         // Colores de apoyo (sobrescribir aquí)
         colorScheme: {

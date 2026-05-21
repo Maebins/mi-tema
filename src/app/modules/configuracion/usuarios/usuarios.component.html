@@ -1,0 +1,191 @@
+<div class="space-y-6 animate-fade-in">
+    <!-- Encabezado -->
+    <div class="flex flex-col gap-8 md:flex-row md:justify-between ">
+        <div>
+            <h1 class="font-barlow text-3xl font-extrabold text-dark-scale dark:text-white">Usuarios</h1>
+            <p class="text-md font-regular text-gray-scale-600 dark:text-gray-scale-300 mt-2">
+                Cuentas con acceso a la plataforma — cada usuario tiene un perfil de permisos asignado.
+            </p>
+        </div>
+        <div class="flex items-end gap-2">
+            <app-button 
+                [config]="{ 
+                    label: 'Politicas', 
+                    icon: true, 
+                    iconName: 'security', 
+                    type: 'neutral', 
+                    outlined: true 
+                }"
+            />
+            <app-button 
+                (click)="abrirModal()"
+                [config]="{ 
+                    label: 'Invitar usuario', 
+                    icon: true, 
+                    type: 'primary'
+                }"
+            />
+        </div>
+    </div>
+    <!-- Tabla usuarios -->
+    <div class="w-full flex flex-col min-h-screen">
+
+        <div class="bg-white dark:bg-dark-scale rounded-xl border border-gray-scale-200 dark:border-gray-scale-800 shadow-sm flex flex-col overflow-hidden">
+            
+            <div class="p-4 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 border-b border-gray-scale-100 dark:border-dark-scale-800">
+                <h2 class="text-lg font-bold font-barlow text-gray-900 dark:text-white">5 usuarios</h2>
+                
+                <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+                    <div class="relative flex-grow sm:flex-grow-0 sm:w-64">
+                        <svg class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                        <input type="text" placeholder="Buscar usuario por nombre o cor..." class="w-full pl-9 pr-3 py-2 bg-gray-50 dark:bg-dark-scale-900 border border-gray-scale-200 dark:border-gray-scale-800 rounded-lg text-sm text-dark-scale dark:text-white focus:outline-none focus:border-orange-500 transition-colors placeholder-gray-400" />
+                    </div>
+                    
+                    <app-button 
+                        [config]="{ 
+                            label: 'Excel', 
+                            icon: true, 
+                            iconName: 'file_save', 
+                            type: 'neutral', 
+                            outlined: true 
+                        }"
+                    />
+                    <app-button 
+                        [config]="{ 
+                            label: 'Filtros', 
+                            icon: true, 
+                            iconName: 'filter_list', 
+                            type: 'neutral', 
+                            outlined: true 
+                        }"
+                    />
+                    <app-button
+                        (click)="abrirModal()"
+                        [config]="{ 
+                            label: 'Invitar Usuario', 
+                            icon: true, 
+                            type: 'primary'
+                        }"
+                    />
+                </div>
+            </div>
+
+            <div class="overflow-x-auto">
+                <table class="w-full text-left whitespace-nowrap">
+                    <thead>
+                        <tr class="font-barlow bg-gray-50 dark:bg-[#252a30] text-gray-500 dark:text-gray-400 text-xs font-bold border-b border-gray-scale-200 dark:border-dark-scale-700">
+                            <th class="py-3 px-6">Usuario</th>
+                            <th class="py-3 px-4">Perfil</th>
+                            <th class="py-3 px-4">Último acceso</th>
+                            <th class="py-3 px-4">Estado</th>
+                            <th class="py-3 px-6"></th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-scale-100 dark:divide-dark-scale-700/50 text-sm">
+                        @for (item of usuarios; track item.correo) {
+                            <tr class="hover:bg-gray-50/50 dark:hover:bg-dark-scale-800/50 transition-colors group">
+                                
+                                <td class="py-3 px-6">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-9 h-9 rounded-full bg-slate-600 dark:bg-slate-700 text-white flex items-center justify-center text-xs font-bold shrink-0">
+                                            {{ item.initials }}
+                                        </div>
+                                        <div class="flex flex-col">
+                                            <span class="font-bold text-gray-900 dark:text-white">{{ item.nombre }}</span>
+                                            <span class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">{{ item.correo }}</span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border border-transparent dark:border-gray-scale-700 {{ item.perfilClase }}">
+                                        <span class="w-1.5 h-1.5 rounded-full {{ item.pDot }}"></span>
+                                        {{ item.perfil }}
+                                    </span>
+                                </td>
+
+                                <td class="py-3 px-4 text-gray-600 dark:text-gray-300">
+                                    {{ item.acceso }}
+                                </td>
+
+                                <td class="py-3 px-4">
+                                    <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-bold border border-transparent dark:border-gray-scale-700 {{ item.estadoClase }}">
+                                        <span class="w-1.5 h-1.5 rounded-full {{ item.eDot }}"></span>
+                                        {{ item.estado }}
+                                    </span>
+                                </td>
+
+                                <td class="py-3 px-6 text-right">
+                                    <div class="flex items-center justify-end gap-2 text-gray-400 opacity-50 group-hover:opacity-100 transition-opacity">
+                                        <button class="hover:text-gray-600 dark:hover:text-gray-200 transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg></button>
+                                        <button class="hover:text-blue-500 transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></button>
+                                        <button class="hover:text-red-500 transition-colors"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="p-4 border-t border-gray-scale-200 dark:border-dark-scale-700 bg-gray-50 dark:bg-dark-scale-900 rounded-b-xl flex flex-col sm:flex-row justify-between items-center gap-4">
+                <span class="text-sm text-gray-500 dark:text-gray-400">Mostrando <strong class="font-bold text-gray-700 dark:text-gray-300">1-5</strong> de 5 registros</span>
+                <div class="flex items-center gap-1.5">
+                    <button class="w-8 h-8 flex items-center justify-center rounded border border-gray-scale-200 dark:border-dark-scale-600 bg-white dark:bg-dark-scale-800 text-gray-500 hover:bg-gray-50 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded bg-[#ffc107] text-gray-900 font-bold text-sm shadow-sm">1</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded border border-transparent hover:border-gray-scale-200 dark:hover:border-dark-scale-600 bg-transparent text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-scale-800 font-bold text-sm transition-colors">2</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded border border-transparent hover:border-gray-scale-200 dark:hover:border-dark-scale-600 bg-transparent text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-scale-800 font-bold text-sm transition-colors">3</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded border border-transparent hover:border-gray-scale-200 dark:hover:border-dark-scale-600 bg-transparent text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-scale-800 font-bold text-sm transition-colors">4</button>
+                    <button class="w-8 h-8 flex items-center justify-center rounded border border-transparent hover:border-gray-scale-200 dark:hover:border-dark-scale-600 bg-transparent text-gray-600 dark:text-gray-400 hover:bg-white dark:hover:bg-dark-scale-800 transition-colors">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<app-dialog 
+    [visible]="modalVisible" 
+    (visibleChange)="modalVisible = $event" 
+    [config]="modalConfig" 
+    (onSave)="enviarInvitacion()"
+>
+    <div class="flex flex-col gap-5 mt-2">
+        
+        <div class="flex flex-col gap-1.5">
+            <app-form-field 
+                [config]="personaConfig" 
+                [(ngModel)]="form.persona">
+            </app-form-field>
+            <p class="text-[13px] text-gray-500 dark:text-gray-400">
+                Selecciona una persona existente o regístrala primero en el módulo Personas.
+            </p>
+        </div>
+
+        <app-form-field 
+            [config]="correoConfig" 
+            [(ngModel)]="form.correo">
+        </app-form-field>
+
+        <app-form-field 
+            [config]="perfilConfig" 
+            [(ngModel)]="form.perfil">
+        </app-form-field>
+
+        <div class="flex items-center gap-2.5 mt-2">
+            <input 
+                type="checkbox" 
+                id="sendEmail" 
+                [(ngModel)]="form.enviarCorreo" 
+                class="w-4 h-4 rounded border-gray-300 dark:border-dark-scale-600 text-[#f97316] focus:ring-[#f97316] dark:bg-dark-scale-900 cursor-pointer accent-[#ffc107]"
+            >
+            <label for="sendEmail" class="text-[13px] font-medium text-gray-700 dark:text-gray-300 cursor-pointer">
+                Enviar correo de bienvenida con enlace de activación
+            </label>
+        </div>
+        
+    </div>
+</app-dialog>

@@ -5,7 +5,7 @@
     @if (label) {
         <label
             [for]="inputId"
-            class="text-base font-medium text-black-custom dark:text-white"
+            class="text-xs font-regular text-black-custom dark:text-white"
             [ngClass]="horizontal ? 'flex items-center gap-1 overflow-hidden' : 'mb-2 block'"
         >
             <span [ngClass]="{ 'flex-1': horizontal }" [title]="label">
@@ -32,7 +32,7 @@
             
             [ngClass]="{ 'ng-invalid ng-dirty': error }"
             
-            class="w-full text-base text-center"
+            class="w-full text-xs text-center"
             [styleClass]="borderless ? 'w-full inputnumber-borderless' : 'w-full text-center'"
             [inputStyleClass]="borderless ? 'w-full inputnumber-borderless__input' : 'w-full text-center'"
         />

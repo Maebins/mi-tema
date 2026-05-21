@@ -7,22 +7,70 @@
 @tailwind utilities;
 
 /* 1. REGISTRO DE FUENTES PERSONALIZADAS */
+
+/* Peso 400 (Regular) */
 @font-face {
-    font-family: 'Red Hat Display';
-    font-weight: 300 900;
-    font-display: swap;
+    font-family: 'Barlow Condensed';
+    src: url('/fonts/font-custom/Barlow/BarlowCondensed-Regular.woff2') format('woff2');
+    font-weight: 400;
     font-style: normal;
-    src: url('/fonts/font-custom/RedHatDisplay-VariableFont_wght.woff2') format('woff2');
+    font-display: swap;
+}
+/* Peso 500 (Medium) */
+@font-face {
+    font-family: 'Barlow Condensed';
+    src: url('/fonts/font-custom/Barlow/BarlowCondensed-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
+/* Peso 600 (SemiBold) */
 @font-face {
-    font-family: 'Arima';
-    font-weight: 100 700;
-    font-display: swap;
+    font-family: 'Barlow Condensed';
+    src: url('/fonts/font-custom/Barlow/BarlowCondensed-SemiBold.woff2') format('woff2');
+    font-weight: 600;
     font-style: normal;
-    src: url('/fonts/font-custom/Arima-VariableFont_wght.woff2') format('woff2');
+    font-display: swap;
 }
 
+/* Peso 700 (Bold) */
+@font-face {
+    font-family: 'Barlow Condensed';
+    src: url('/fonts/font-custom/Barlow/BarlowCondensed-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Peso 800 (ExtraBold) */
+@font-face {
+    font-family: 'Barlow Condensed';
+    src: url('/fonts/font-custom/Barlow/BarlowCondensed-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+//Fuente : Jetbrains Mono
+/* Peso 100 - 800 (thin - ExtraBold) */
+@font-face {
+    font-family: 'Jetbrains Mono';
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+    src: url('/fonts/font-custom/Jetbrains/JetBrainsMono-VariableFont_wght.woff2') format('woff2');
+}
+
+//fuente: Archivo
+@font-face {
+    font-family: 'Archivo';
+    font-weight: 100 800;
+    font-display: swap;
+    font-style: normal;
+    src: url('/fonts/font-custom/Archivo/Archivo-VariableFont_wght.woff2') format('woff2');
+}
 @layer tailwind-base, primeng, tailwind-utilities;
 
 @layer tailwind-base {
@@ -34,11 +82,13 @@
     @tailwind utilities;
 }
 
+
 /* Body */
 @layer base {
     :root {
-        --font-family-base: 'Red Hat Display', sans-serif;
-        --font-family-serif: 'Arima', serif;
+        --font-family-base: 'Archivo';
+        --font-family-jetbrains: 'Jetbrains Mono';
+        --font-family-barlow: 'Barlow Condensed';
         --font-size-xs: 13px;
         --font-size-sm: 14px;
         --font-size-md: 15px;
@@ -52,7 +102,7 @@
     }
 
     body {
-        @apply m-0 p-0 antialiased text-slate-800 dark:text-white bg-slate-50 text-md;
+        @apply m-0 p-0 antialiased text-slate-800 dark:text-white bg-slate-50 text-xs;
         @apply bg-slate-50 dark:bg-slate-950 transition-colors duration-200;
         font-family: var(--font-family-base);
 
@@ -92,6 +142,25 @@
         --p-checkbox-icon-color: theme('colors.white-scale.DEFAULT'); 
     }
 
+}
+
+//Fondo grilla  para layout
+@layer utilities {
+  .bg-grid-pattern {
+    background-image: 
+        linear-gradient(to right, #DDE1E4 1px, transparent 1px),
+        linear-gradient(to bottom, #DDE1E4 1px, transparent 1px);
+    background-size: 32px 32px;
+    background-color: #EEF0F2;
+  }
+
+  .dark{
+    .bg-grid-pattern {
+        background-image: 
+        linear-gradient(to right, theme('colors.dark-scale.700') 1px, transparent 1px),
+        linear-gradient(to bottom, theme('colors.dark-scale.700') 1px, transparent 1px);
+    }
+  }
 }
 
 /* Ajuste Google Icons */
@@ -166,7 +235,7 @@ p-datepicker .p-inputtext {
     .p-datepicker-title,
     .p-datepicker-calendar th,
     .p-datepicker-calendar td > span {
-        @apply  text-sm !important;
+        @apply  text-xs !important;
     }
 }
 
@@ -199,11 +268,8 @@ p-datepicker .p-inputtext {
 .p-tag,
 .p-chips .p-chips-token,
 .p-chips .p-chips-input-token input {
-    @apply text-sm !important;
+    @apply text-xs !important;
 }
-
-
-
 .p-inputtext {
     --p-inputtext-background: theme('colors.cream.200');
     --p-inputtext-color: theme('colors.dark-scale.DEFAULT'); 
@@ -292,7 +358,7 @@ p-datepicker .p-inputtext {
     border-radius: 8px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-    background-color: var(--primary, #9a1230); 
+    background-color: theme('colors.gray-scale.300');
     border-radius: 8px;
 }
 
@@ -324,6 +390,13 @@ p-datepicker .p-inputtext {
         background: transparent !important;
         background-color: transparent !important;
     }
+}
+.p-dialog-title {
+    font-family: var(--font-family-barlow);
+    font-weight: 600;
+}
+.p-tag{
+    border-radius: 20px;
 }
 
 /*Modo oscuro*/
@@ -459,12 +532,13 @@ p-datepicker .p-inputtext {
 
     /* Scrolbar table */
     .custom-scrollbar::-webkit-scrollbar-track {
-        background: #0f172a;
+        background: transparent;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-        background-color: var(--secondary, #d4af37); 
+        background-color: theme('colors.dark-scale.DEFAULT');
     }
 }
+
 
 
 
