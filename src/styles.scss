@@ -173,21 +173,21 @@
 }
 
 .scrollbar-thin {
-    scrollbar-width: thin;
+    //scrollbar-width: thin;
 
     &::-webkit-scrollbar {
         width: 6px;
     }
 
     &::-webkit-scrollbar-track {
-        background: transparent;
+        background: theme('colors.dark-scale.DEFAULT');
     }
 
     &::-webkit-scrollbar-thumb {
-        @apply bg-secondary-200 dark:bg-secondary-700 rounded-full;
+        @apply bg-dark-scale rounded-full;
 
         &:hover {
-            @apply bg-secondary-300 dark:bg-secondary-600;
+            @apply bg-dark-scale;
         }
     }
 }

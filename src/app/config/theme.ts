@@ -13,7 +13,7 @@ export const MySystemPreset = definePreset(Aura, {
             500: '#ffc107',
             600: '#f5a800', 
             700: '#cc8400',
-            800: '#a36500',
+            800: '#a36500', 
             900: '#854f05',
             950: '#4d2a00',
             DEFAULT: '#ffc107',

@@ -1,0 +1,96 @@
+.auth-side {
+  background: linear-gradient(155deg, #1C1F22 0%, #2C3338 55%, #3A4248 100%);
+  position: relative;
+  overflow: hidden;
+  padding: 50px 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #E9ECEE;
+
+  &::before {
+    content: "";
+    position: absolute;
+    right: -80px; top: -80px;
+    width: 320px; height: 320px;
+    background: repeating-linear-gradient(45deg, theme('colors.primary.DEFAULT') 0 18px, #1C1F22 18px 36px);
+    opacity: .10;
+    transform: rotate(10deg);
+    border-radius: 40px;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    left: -60px; bottom: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, theme('colors.secondary.DEFAULT') 0%, transparent 70%);
+    opacity: .18;
+  }
+
+  .brand-block {
+    display: flex; align-items: center; gap: 14px;
+    position: relative; z-index: 2;
+
+    img { width: 54px; height: 54px; filter: drop-shadow(0 4px 8px rgba(0,0,0,.4)); }
+    .wm {
+      font-family:var(--font-family-barlow);
+      font-weight: 700;
+      font-size: 1.95rem;
+      line-height: 1;
+      .c1 { color: #fff; }
+      .c2 { color: theme('colors.primary.DEFAULT'); }
+    }
+    small {
+      display: block;
+      font-size: .7rem;
+      letter-spacing: 2.5px;
+      color: var(theme('colors.secondary.DEFAULT'));
+      font-weight: 700;
+      margin-top: 3px;
+      text-transform: uppercase;
+    }
+  }
+
+  .hero-text {
+    position: relative; z-index: 2;
+    max-width: 480px;
+
+    h2 {
+      font-family: var(--font-family-barlow);
+      font-weight: 800;
+      font-size: 2.6rem;
+      line-height: 1.05;
+      letter-spacing: .5px;
+      margin-bottom: 14px;
+
+      em { color: theme('colors.primary.DEFAULT'); font-style: normal; }
+    }
+    p { color: #A4ADB4; font-size: .97rem; line-height: 1.6; }
+  }
+
+  .feats {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; gap: 12px;
+    margin-top: 22px;
+
+    .feat {
+      display: flex; align-items: center; gap: 12px;
+      font-size: .88rem; color: #D4D9DC;
+
+      .ico {
+        width: 36px; height: 36px; border-radius: 8px;
+        background: rgba(255,193,7,.14);
+        color: theme('colors.primary.DEFAULT');
+        display: grid; place-items: center;
+        flex-shrink: 0;
+        font-size: 1rem;
+      }
+    }
+  }
+
+  .copyr {
+    position: relative; z-index: 2;
+    font-size: .74rem; color: #6E777E;
+  }
+}

@@ -1,23 +1,49 @@
 <div
-    class="min-h-screen bg-transparent flex items-center justify-center p-4"
+    class="min-h-screen bg-transparent grid grid-cols-2"
 >
+    <!-- Columna Izquierda-->
+    <div class="auth-side">
+        <div class="brand-block">
+            <div>
+                <img src="images/logo/logo.png" alt="">
+            </div>
+            <div>
+                <div class="wm"><span class="c1">Constru</span><span class="c2">Track</span></div>
+                <small class="text-secondary">Control de Avance de Obra</small>
+            </div>
+            </div>
+
+            <div class="hero-text">
+            <h2>El control de tu obra,<br><em>en una sola plataforma.</em></h2>
+            <p>Sigue el avance físico y financiero de tus obras civiles en tiempo real.
+            Para el asistente técnico, el residente y el supervisor.</p>
+            </div>
+
+            <div class="feats">
+            <div class="feat">
+                <div class="ico"><i class="pi pi-chart-line"></i></div>
+                Curva S, valorizaciones y kárdex en tiempo real
+            </div>
+            <div class="feat">
+                <div class="ico"><i class="pi pi-box"></i></div>
+                Almacén de obra integrado al presupuesto
+            </div>
+            <div class="feat">
+                <div class="ico"><i class="pi pi-shield"></i></div>
+                Roles por proyecto: AT, residente, supervisor, gerente
+            </div>
+            </div>
+
+            <div class="copyr">© 2026 ConstruTrack · Hecho para la construcción peruana.</div>
+    </div>
     <div
-        class="w-full max-w-md bg-white dark:bg-dark-scale rounded-2xl shadow-xl border border-gray-scale-200 dark:border-gray-scale-800 p-8"
+        class="w-full  bg-white-scale dark:bg-dark-scale pt-24 pb-24 pl-32 pr-32"
     >
         <!-- Logo / Header -->
-        <div class="flex flex-col items-center mb-8">
-            <div
-                class="w-36 h-36 rounded-2xl flex items-center justify-center "
-            >
-                <img
-                    class="w-full"
-                    src="images/logo/logo.png"
-                    alt="Logo image"
-                />
-            </div>
-            <h1 class="text-3xl font-barlow font-bold text-dark-scale dark:text-white">Bienvenido</h1>
+        <div class="flex flex-col  mb-8">
+            <h1 class="text-3xl font-barlow font-extrabold text-dark-scale dark:text-white">Bienvenido de vuelta</h1>
             <p class="text-md font-medium text-gray-scale-600 dark:text-gray-scale-300 mt-1">
-                Inicia sesión para continuar
+                Ingresa con tu cuenta para continuar gestionando tus obras.
             </p>
         </div>
 
@@ -43,11 +69,14 @@
                 inputStyleClass="w-full text-xs"
                 autocomplete="current-password"
             ></p-password>
-
-            <div class="flex justify-end -mt-2">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+                <label class="checkbox">
+                    <input type="checkbox" formControlName="remember">
+                    Recordarme
+                </label>
                 <a
                     href="#"
-                    class="text-xs text-secondary hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                    class="text-xs font-bold text-secondary hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
                 >
                     ¿Olvidaste tu contraseña?
                 </a>
@@ -62,6 +91,39 @@
                     (click)="onSubmit()"
                 ></app-button>
             </div>
+            <!-- Separador -->
+            <div class="my-2 flex items-center">
+                <div class="flex-grow border-t"></div>
+                <span
+                    class="mx-2 text-sm text-gray-500 dark:text-dark-text-secondary"
+                >
+                    Continuar de otra forma
+                </span>
+                <div class="flex-grow border-t"></div>
+            </div>
+
+            <app-button
+                [config]="{ 
+                    label: 'Continuar con SSO Empresarial',
+                    icon:true,
+                    iconName:'security', 
+                    type: 'neutral',
+                    outlined: true,
+                    fullWidth: true
+                }"
+                (click)="onSubmit()"
+            ></app-button>
+
+            <!-- Enlace a registro -->
+            <p
+                class="my-4 text-sm"
+            >
+                ¿No tienes cuenta?
+                <a
+                    class="text-secondary font-bold hover:underline"
+                    >Regístrate</a
+                >
+            </p>
         </form>
     </div>
 </div>

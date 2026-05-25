@@ -22,7 +22,7 @@
         <a 
             [routerLink]="item.routerLink"
             routerLinkActive="font-bold !bg-primary !text-dark-scale-900 hover:!text-dark-scale-900"
-            class="flex items-center justify-center pr-4 py-2.5 mx-2 mb-1 rounded-lg text-gray-scale-500 font-medium dark:text-white-scale-600 hover:bg-gray-scale-50 dark:hover:bg-gray-scale-800 hover:text-gray-scale-900 dark:hover:text-white transition-colors duration-150 cursor-pointer group"
+            class="flex items-center justify-center pr-4 py-2.5 mx-2 mb-1 rounded-lg  font-medium text-white-scale-600 hover:bg-gray-scale-800 hover:text-white transition-colors duration-150 cursor-pointer group"
             [style.paddingLeft]="paddingLeft"
             (click)="layoutService.closeMobileSidebar()"
         >
@@ -83,6 +83,6 @@
     }
 
     @case ('divider') {
-        <div class="border-t border-gray-scale-200 dark:border-gray-scale-800 my-2"></div>
+        <div class="border-t border-gray-scale-800 my-2"></div>
     }
 }
